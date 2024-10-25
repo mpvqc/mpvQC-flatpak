@@ -1,0 +1,28 @@
+name: Build Flatpak
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  flatpak:
+    name: Flatpak
+    runs-on: ubuntu-latest
+
+    container:
+      image: ghcr.io/andyholmes/flatter/freedesktop:24.08
+      options: --privileged
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - uses: andyholmes/flatter@main
+      with:
+        files: com.github.mpvqc.mpvQC.yml
+        upload-bundles: true  # todo remove
+        upload-pages-artifact: true
+#        upload-pages-includes: |
+#          mpvQC.flatpakref
