@@ -2,6 +2,6 @@
 Name=com.github.mpvqc.mpvQC
 Title=mpvQC
 IsRuntime=false
-Url=https://github.com/mpvqc/mpvQC-flatpak
+Url=https://mpvqc.github.io/mpvQC-flatpak/
 SuggestRemoteName=mpvQC
 RuntimeRepo=https://dl.flathub.org/repo/flathub.flatpakrepo
