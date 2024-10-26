@@ -18,7 +18,6 @@ jobs:
     - uses: andyholmes/flatter@main
       with:
         files: com.github.mpvqc.mpvQC.yml
-        upload-bundles: true  # todo remove
         upload-pages-artifact: true
         upload-pages-includes: |
           mpvQC.flatpakref
