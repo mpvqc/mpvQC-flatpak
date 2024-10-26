@@ -1,5 +1,3 @@
-# Supposed to be called at repository root level - copied during CI build to root level
-
 id: com.github.mpvqc.mpvQC
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
