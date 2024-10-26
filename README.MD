@@ -1,14 +1,19 @@
-todos:
+# mpvQC-flatpak
 
-* generate python dependencies using https://pypi.org/project/req2flatpak/
-  * update justfile
-* document release process
-* include flatpak ref in ci build
-* ...
+This repository contains necessary artifacts and scripts to build mpvQC flatpaks.
 
+Flatpak is a software utility for deploying, managing, and running applications on Linux, allowing apps to run
+consistently across different Linux distributions.
 
 ## Installation
 
-```bash
-$ flatpak install --user --noninteractive https://mpvqc.github.io/mpvQC-flatpak/mpvQC.flatpakref
+### GUI
+
+* Download <a href="https://mpvqc.github.io/mpvQC-flatpak/mpvQC.flatpakref" download="mpvQC.flatpakref">Flatpak Ref File</a>
+* Double click
+
+### Terminal
+
+```shell
+flatpak install --user https://mpvqc.github.io/mpvQC-flatpak/mpvQC.flatpakref
 ```

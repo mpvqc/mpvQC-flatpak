@@ -17,7 +17,7 @@ _default:
     just --list
 
 # Prints relevant info for flatpak pypi dependencies
-[group('flatpak')]
+[group('support')]
 generate-flatpak-dependencies:
     @python flatpak-pypi-checker.py \
     	--dependency inject::none:any \
