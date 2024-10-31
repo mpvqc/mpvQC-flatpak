@@ -4,7 +4,7 @@
     <id>com.github.mpvqc.mpvQC.desktop</id>
 
     <name>mpvQC</name>
-    <summary>A libmpv based application for the quick and easy creation of quality control reports of video files
+    <summary>A libmpv-based application for quick and easy creation of video file quality control reports.
     </summary>
 
     <metadata_license>CC0-1.0</metadata_license>
@@ -12,7 +12,7 @@
 
     <description>
         <p>
-            A libmpv based application for the quick and easy creation of quality control reports of video files
+            A libmpv-based application for quick and easy creation of video file quality control reports.
         </p>
     </description>
 
@@ -30,7 +30,14 @@
     </screenshots>
 
     <releases>
-        <release date="2023-10-01" version="v0.8.0">
+        <release date="2024-10-01" version="v0.8.1">
+            <description>
+                <ul>
+                    <li>Updated mpv to v0.39.0</li>
+                </ul>
+            </description>
+        </release>
+        <release date="2023-01-10" version="v0.8.0">
             <description>
                 <ul>
                     <li>New: Spanish lanuage (thanks to @RcUchiha)</li>
