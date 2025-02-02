@@ -208,8 +208,8 @@ modules:
   - name: python
     sources:
       - type: archive
-        url: https://www.python.org/ftp/python/3.12.7/Python-3.12.7.tar.xz
-        sha256: 24887b92e2afd4a2ac602419ad4b596372f67ac9b077190f459aba390faf5550
+        url: https://www.python.org/ftp/python/3.12.8/Python-3.12.8.tar.xz
+        sha256: c909157bb25ec114e5869124cc2a9c4a4d4c1e957ca4ff553f1edc692101154e
 
   # https://github.com/flathub/io.qt.qtwebengine.BaseApp/tree/branch/6.7/krb5
   - name: krb5
@@ -246,11 +246,11 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "Jinja2>=3.1.4" --no-build-isolation
+        --prefix=${FLATPAK_DEST} "Jinja2>=3.1.5" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/31/80/3a54838c3fb461f6fec263ebf3a3a41771bd05190238de3486aae8540c36/jinja2-3.1.4-py3-none-any.whl
-        sha256: bc5dd2abb727a5319567b7a813e6a2e7318c39f4f487cfe6c89c6f9c7d25197d
+        url: https://files.pythonhosted.org/packages/bd/0f/2ba5fbcd631e3e88689309dbe978c5769e883e4b84ebfe7da30b43275c5a/jinja2-3.1.5-py3-none-any.whl
+        sha256: aba0f4dc9ed8013c424088f68a5c226f7d6097ed89b246d7749c2ec4175c6adb
       - type: file
         url: https://files.pythonhosted.org/packages/f3/f0/89e7aadfb3749d0f52234a0c8c7867877876e0a20b60e2188e9850794c17/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
         sha256: e17c96c14e19278594aa4841ec148115f9c7615a47382ecb6b82bd8fea3ab0c8
@@ -258,14 +258,14 @@ modules:
     buildsystem: simple
     build-commands:
       - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
-        --prefix=${FLATPAK_DEST} "PySide6-Essentials>=6.7.3" --no-build-isolation
+        --prefix=${FLATPAK_DEST} "PySide6-Essentials>=6.8.2" --no-build-isolation
     sources:
       - type: file
-        url: https://files.pythonhosted.org/packages/b2/e9/5c0c67de510da7818703d01123f7998cc495e99c0e6979a6ed6eb2ee09d0/shiboken6-6.7.3-cp39-abi3-manylinux_2_28_x86_64.whl
-        sha256: f0852e5781de78be5b13c140ec4c7fb9734e2aaf2986eb2d6a224363e03efccc
+        url: https://files.pythonhosted.org/packages/77/79/204d6d8d9892f36d46b40815aab770620191c141ab98851eb708683588f9/shiboken6-6.8.2-cp39-abi3-manylinux_2_28_x86_64.whl
+        sha256: 924c23bed7c0b6ff8a308f4e12e5a9681f720c22d1be339cac01591feb7ebb32
       - type: file
-        url: https://files.pythonhosted.org/packages/8d/d8/a08ca6eca6839be5d604e4035ce899f9d6df0f612191f4ed4d03e51f1e0e/PySide6_Essentials-6.7.3-cp39-abi3-manylinux_2_28_x86_64.whl
-        sha256: cda6fd26aead48f32e57f044d18aa75dc39265b49d7957f515ce7ac3989e7029
+        url: https://files.pythonhosted.org/packages/f9/4c/ce3dc6a71161b6fd8c007051729914cc79c049b33f041adca1db46d31f1d/PySide6_Essentials-6.8.2-cp39-abi3-manylinux_2_28_x86_64.whl
+        sha256: 341d3023da4d74605e354974346234007065208b40740732c6f69e1d33e70835
   - name: python3-mpv
     buildsystem: simple
     build-commands:
@@ -296,6 +296,10 @@ modules:
         path: com.github.mpvqc.mpvQC.svg
 
       - type: archive  # todo use url to release artifact once we release
-        url: https://github.com/trin94/test/releases/download/v0.9.0/release-build-linux.zip
-        sha256: 92e9b05a329ea82b9e053436895f1616b3af391f6621b8bb8c58d0ec4dadcd43
+        url: https://github.com/trin94/test/releases/download/v0.9.0-2/release-build-linux.zip
+        sha256: 6b147cf63c5300ee12fb77aad3c8c1a46338ec0ff77b19f78ee9ba85299d8f28
         strip-components: 0
+
+      # local testing
+      # - type: dir
+      #  path: /home/elias/PycharmProjects/mpvQC/build/release
