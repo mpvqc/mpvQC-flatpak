@@ -24,7 +24,12 @@
     <screenshots>
         <screenshot type="default">
             <image>
-                https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/screenshot-01.png
+                https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/mpvQC-dark.png
+            </image>
+        </screenshot>
+        <screenshot>
+            <image>
+                https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/mpvQC-light.png
             </image>
         </screenshot>
     </screenshots>
