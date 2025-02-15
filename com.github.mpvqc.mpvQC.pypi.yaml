@@ -1,0 +1,25 @@
+build-commands:
+  - pip3 install --verbose --exists-action=i --ignore-installed jinja2==3.1.5 markupsafe==3.0.2 pyside6-essentials==6.8.2 inject==5.2.1 mpv==1.0.7 shiboken6==6.8.2 --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2==3.1.5 markupsafe==3.0.2 pyside6-essentials==6.8.2 inject==5.2.1 mpv==1.0.7 shiboken6==6.8.2
+buildsystem: simple
+cleanup:
+  - /bin
+name: pypi-dependencies
+sources:
+  - sha256: aba0f4dc9ed8013c424088f68a5c226f7d6097ed89b246d7749c2ec4175c6adb
+    type: file
+    url: https://files.pythonhosted.org/packages/bd/0f/2ba5fbcd631e3e88689309dbe978c5769e883e4b84ebfe7da30b43275c5a/jinja2-3.1.5-py3-none-any.whl
+  - sha256: e17c96c14e19278594aa4841ec148115f9c7615a47382ecb6b82bd8fea3ab0c8
+    type: file
+    url: https://files.pythonhosted.org/packages/f3/f0/89e7aadfb3749d0f52234a0c8c7867877876e0a20b60e2188e9850794c17/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+  - sha256: 341d3023da4d74605e354974346234007065208b40740732c6f69e1d33e70835
+    type: file
+    url: https://files.pythonhosted.org/packages/f9/4c/ce3dc6a71161b6fd8c007051729914cc79c049b33f041adca1db46d31f1d/PySide6_Essentials-6.8.2-cp39-abi3-manylinux_2_28_x86_64.whl
+  - sha256: e40a5b1bebd8a4050b6f98f3396f3de6e9e2e411ad2a2145f16f351cb6f54e51
+    type: file
+    url: https://files.pythonhosted.org/packages/e9/db/3250e21ff08b3466e1ce8d0b2b09edcd6af7672f709d8625e142e824eb0b/inject-5.2.1-py2.py3-none-any.whl
+  - sha256: 520fb134c18185b69c7fce4aa3514f14371028022d92eb193818e9fefb1e9fe8
+    type: file
+    url: https://files.pythonhosted.org/packages/aa/3f/d835556e34804cd0078507ed0f8a550f15d2861b875656193dd3451b720b/mpv-1.0.7-py3-none-any.whl
+  - sha256: 924c23bed7c0b6ff8a308f4e12e5a9681f720c22d1be339cac01591feb7ebb32
+    type: file
+    url: https://files.pythonhosted.org/packages/77/79/204d6d8d9892f36d46b40815aab770620191c141ab98851eb708683588f9/shiboken6-6.8.2-cp39-abi3-manylinux_2_28_x86_64.whl

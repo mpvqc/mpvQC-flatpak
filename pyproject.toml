@@ -1,0 +1,21 @@
+[project]
+name = "mpvqc-flatpak"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.MD"
+requires-python = ">=3.13"
+dependencies = [
+    "PyYaml",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.9.5",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+extend-select = ["I"]

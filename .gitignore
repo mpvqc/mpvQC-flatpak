@@ -235,5 +235,6 @@ tags
 # End of https://www.toptal.com/developers/gitignore/api/flatpak,linux,pycharm+all,visualstudiocode,emacs,vim,sublimetext
 
 .flatpak-builder/
+.venv/
 build-dir/
 repo/

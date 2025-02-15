@@ -13,19 +13,30 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-_default:
+@_default:
     just --list
 
-# Prints relevant info for flatpak pypi dependencies
+# Initialize repository
+@init:
+    uv sync
+
+# Format code
+@format:
+    uv run ruff check --fix
+    uv run ruff format
+
+# Regenerate com.github.mpvqc.mpvQC.pypi.yaml
 [group('support')]
-generate-flatpak-dependencies:
-    @python flatpak-pypi-checker.py \
+@generate-flatpak-dependencies:
+    python flatpak-pypi-updater.py \
     	--dependency inject::none:any \
     	--dependency PySide6-Essentials==6.8.2::manylinux:x86_64 \
     	--dependency shiboken6==6.8.2::manylinux:x86_64 \
     	--dependency MarkupSafe::cp312:manylinux:x86_64 \
     	--dependency Jinja2::none:any \
-    	--dependency mpv::none:any | jq
+    	--dependency mpv::none:any \
+    	--output com.github.mpvqc.mpvQC.pypi.yaml
+    yq -iP com.github.mpvqc.mpvQC.pypi.yaml
 
 # (1) Build flatpak
 [group('flatpak')]
