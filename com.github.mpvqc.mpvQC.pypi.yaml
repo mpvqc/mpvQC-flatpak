@@ -1,5 +1,5 @@
 build-commands:
-  - pip3 install --verbose --exists-action=i --ignore-installed jinja2==3.1.5 markupsafe==3.0.2 pyside6-essentials==6.8.2 inject==5.2.1 mpv==1.0.7 shiboken6==6.8.2 --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2==3.1.5 markupsafe==3.0.2 pyside6-essentials==6.8.2 inject==5.2.1 mpv==1.0.7 shiboken6==6.8.2
+  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2~=3.1.5 markupsafe~=3.0.2 pyside6-essentials~=6.8.2 inject~=5.2.1 mpv~=1.0.7 shiboken6~=6.8.2
 buildsystem: simple
 cleanup:
   - /bin

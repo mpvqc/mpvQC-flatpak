@@ -114,7 +114,7 @@ def run(args):
 
 
 def dump_yml_requirements(output, requirements):
-    app_names = " ".join(f"{req.name.lower()}=={req.version}" for req in requirements)
+    app_names = " ".join(f"{req.name.lower()}~={req.version}" for req in requirements)
     sources = [
         {
             "type": "file",
@@ -131,7 +131,7 @@ def dump_yml_requirements(output, requirements):
         "buildsystem": "simple",
         "build-commands": [
             (
-                f"pip3 install --verbose --exists-action=i --ignore-installed {app_names} "
+                f"pip3 install --verbose --exists-action=i "
                 f'--no-index --find-links="file://${{PWD}}" '
                 f"--prefix=${{FLATPAK_DEST}} --no-build-isolation {app_names}"
             ),
