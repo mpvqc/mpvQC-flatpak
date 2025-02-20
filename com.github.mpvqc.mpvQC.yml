@@ -8,7 +8,6 @@ finish-args:
   - --device=dri
   - --filesystem=home
   - --share=ipc
-  - --share=network
   - --socket=wayland
   - --socket=fallback-x11
   - --socket=pulseaudio
@@ -251,8 +250,8 @@ modules:
         path: com.github.mpvqc.mpvQC.svg
 
       - type: archive  # todo use url to release artifact once we release
-        url: https://github.com/trin94/test/releases/download/v0.9.0-2/release-build-linux.zip
-        sha256: 6b147cf63c5300ee12fb77aad3c8c1a46338ec0ff77b19f78ee9ba85299d8f28
+        url: https://github.com/trin94/test/releases/download/v0.9.0-3/release-build-linux.zip
+        sha256: c81965020d055dabe1c320260d7e0a61088aa0fbe5bd6c4d42af54ecab6f47e2
         strip-components: 0
 
       # local testing
