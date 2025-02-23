@@ -20,7 +20,6 @@ build-options:
 
 cleanup:
   - /include
-  - /lib/debug
   - /lib/pkgconfig
   - /lib/python3.12/site-packages/PySide6/examples
   - /lib/python3.12/site-packages/PySide6/lupdate
@@ -53,13 +52,7 @@ modules:
         mirror-urls:
           - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: 97813fb924edf822455f91a5fbbdfdb349e5984f
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/LuaJIT/LuaJIT/commits
-          commit-query: first( .[].sha )
-          version-query: first( .[].sha )
-          timestamp-query: first( .[].commit.committer.date )
+        commit: a4f56a459a588ae768801074b46ba0adcfb49eb1
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
