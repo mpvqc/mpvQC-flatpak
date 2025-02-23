@@ -1,5 +1,5 @@
 [Flatpak Ref]
-Name=com.github.mpvqc.mpvQC
+Name=io.github.mpvqc.mpvQC
 Title=mpvQC
 IsRuntime=false
 Url=https://mpvqc.github.io/mpvQC-flatpak/

@@ -24,7 +24,7 @@ jobs:
 
     - uses: andyholmes/flatter@main
       with:
-        files: com.github.mpvqc.mpvQC.yml
+        files: io.github.mpvqc.mpvQC.yml
         gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
         upload-pages-artifact: true
         upload-pages-includes: |
