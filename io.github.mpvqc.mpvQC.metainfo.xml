@@ -2,9 +2,10 @@
 <!-- Copyright 2022 - mpvQC developers -->
 <component type="desktop-application">
     <id>io.github.mpvqc.mpvQC.desktop</id>
+    <launchable type="desktop-id">io.github.mpvqc.mpvQC.desktop</launchable>
 
     <name>mpvQC</name>
-    <summary>A libmpv-based application for quick and easy creation of video file quality control reports.
+    <summary>A libmpv-based app for quick, easy video QC reporting
     </summary>
 
     <metadata_license>CC0-1.0</metadata_license>
@@ -73,6 +74,10 @@
 
     <url type="homepage">https://github.com/mpvqc/mpvQC</url>
     <url type="bugtracker">https://github.com/mpvqc/mpvQC/issues</url>
+
+    <developer id="io.github.mpvqc">
+        <name>mpvQC developers</name>
+    </developer>
 
     <update_contact>elias.mr1@gmail.com</update_contact>
 </component>
