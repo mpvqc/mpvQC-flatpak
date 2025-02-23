@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2022 - mpvQC developers -->
 <component type="desktop-application">
-    <id>io.github.mpvqc.mpvQC.desktop</id>
+    <id>io.github.mpvqc.mpvQC</id>
     <launchable type="desktop-id">io.github.mpvqc.mpvQC.desktop</launchable>
 
     <name>mpvQC</name>
@@ -24,26 +24,28 @@
 
     <screenshots>
         <screenshot type="default">
-            <image>
+            <image type="source">
                 https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/mpvQC-dark.png
             </image>
+            <caption>Main window using dark mode</caption>
         </screenshot>
         <screenshot>
-            <image>
+            <image type="source">
                 https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/mpvQC-light.png
             </image>
+            <caption>Main window using light mode</caption>
         </screenshot>
     </screenshots>
 
     <releases>
-        <release date="2024-10-01" version="v0.8.1">
+        <release date="2024-10-01" version="0.8.1">
             <description>
                 <ul>
                     <li>Updated mpv to v0.39.0</li>
                 </ul>
             </description>
         </release>
-        <release date="2023-01-10" version="v0.8.0">
+        <release date="2023-01-10" version="0.8.0">
             <description>
                 <ul>
                     <li>New: Spanish lanuage (thanks to @RcUchiha)</li>
@@ -57,7 +59,7 @@
                 </ul>
             </description>
         </release>
-        <release date="2020-09-30" version="v0.7.0">
+        <release date="2020-09-30" version="0.7.0">
             <description>
                 <ul>
                     <li>Complete refactor of the code</li>
@@ -72,7 +74,7 @@
     <project_group>mpvQC</project_group>
     <content_rating type="oars-1.1"/>
 
-    <url type="homepage">https://github.com/mpvqc/mpvQC</url>
+    <url type="homepage">https://mpvqc.github.io</url>
     <url type="bugtracker">https://github.com/mpvqc/mpvQC/issues</url>
 
     <developer id="io.github.mpvqc">

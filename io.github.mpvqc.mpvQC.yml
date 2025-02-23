@@ -49,8 +49,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
-        mirror-urls:
-          - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
         commit: a4f56a459a588ae768801074b46ba0adcfb49eb1
       - type: shell
@@ -85,8 +83,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/nv-codec-headers.git
-        mirror-urls:
-          - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
         tag: n12.2.72.0
         commit: c69278340ab1d5559c7d7bf0edf615dc33ddbba7
         x-checker-data:
@@ -113,8 +109,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
-        mirror-urls:
-          - https://git.ffmpeg.org/ffmpeg.git
         commit: b08d7969c550a804a59511c7b83f2dd8cc0499b8
         tag: n7.1
         x-checker-data:
@@ -170,8 +164,6 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
-        mirror-urls:
-          - https://code.videolan.org/videolan/libplacebo.git
         tag: v7.349.0
         commit: 1fd3c7bde7b943fe8985c893310b5269a09b46c5
         x-checker-data:
