@@ -13,6 +13,13 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+APP_ID := 'io.github.mpvqc.mpvQC'
+MANIFEST_FILE := 'io.github.mpvqc.mpvQC.yml'
+MANIFEST_PYPI_FILE := 'io.github.mpvqc.mpvQC.pypi.yml'
+APPSTREAM_FILE := 'io.github.mpvqc.mpvQC.metainfo.xml'
+DESKTOP_FILE := 'io.github.mpvqc.mpvQC.desktop'
+BUILD_DIR := 'build-dir'
+
 @_default:
     just --list
 
@@ -20,15 +27,12 @@
 @init:
     uv sync
 
-@lint-flatpak:
-    flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest io.github.mpvqc.mpvQC.yml
-
 # Format code
 @format:
     uv run ruff check --fix
     uv run ruff format
 
-# Regenerate io.github.mpvqc.mpvQC.pypi.yaml
+# Regenerate Python dependency file
 [group('support')]
 @generate-flatpak-dependencies:
     python flatpak-pypi-updater.py \
@@ -38,20 +42,40 @@
     	--dependency MarkupSafe::cp312:manylinux:x86_64 \
     	--dependency Jinja2::none:any \
     	--dependency mpv::none:any \
-    	--output io.github.mpvqc.mpvQC.pypi.yaml
-    yq -iP io.github.mpvqc.mpvQC.pypi.yaml
+    	--output {{ MANIFEST_PYPI_FILE }}
+    yq -iP {{ MANIFEST_PYPI_FILE }}
+
+# Lint flatpak appstream file
+[group('flatpak-lint')]
+@lint-flatpak-appstream:
+    flatpak run --command=flatpak-builder-lint org.flatpak.Builder appstream {{ APPSTREAM_FILE }}
+
+# Lint flatpak manifest file
+[group('flatpak-lint')]
+@lint-flatpak-manifest:
+    flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest {{ MANIFEST_FILE }}
+
+# Lint flatpak builddir directory
+[group('flatpak-lint')]
+@lint-flatpak-builddir:
+    flatpak run --command=flatpak-builder-lint org.flatpak.Builder builddir {{ BUILD_DIR }}
+
+# Lint flatpak repo
+[group('flatpak-lint')]
+@lint-flatpak-repo:
+    flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
 
 # (1) Build flatpak
 [group('flatpak')]
 build-flatpak:
-    flatpak-builder --force-clean build-dir io.github.mpvqc.mpvQC.yml
+    flatpak-builder --force-clean {{ BUILD_DIR }} {{ MANIFEST_FILE }}
 
 # (2) Install flatpak
 [group('flatpak')]
 install-flatpak:
-    flatpak-builder --force-clean --user --install-deps-from=flathub --repo=repo --install build-dir io.github.mpvqc.mpvQC.yml
+    flatpak-builder --force-clean --user --install-deps-from=flathub --repo=repo --install {{ BUILD_DIR }} {{ MANIFEST_FILE }}
 
 # (3) Run flatpak
 [group('flatpak')]
 run-flatpak:
-    flatpak run io.github.mpvqc.mpvQC
+    flatpak run {{ APP_ID }}

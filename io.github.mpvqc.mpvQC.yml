@@ -38,7 +38,7 @@ cleanup:
   - '*.a'
 
 modules:
-  - io.github.mpvqc.mpvQC.pypi.yaml
+  - io.github.mpvqc.mpvQC.pypi.yml
 
   - name: luajit
     no-autogen: true
