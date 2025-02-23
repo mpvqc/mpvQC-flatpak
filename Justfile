@@ -20,12 +20,15 @@
 @init:
     uv sync
 
+@lint-flatpak:
+    flatpak run --command=flatpak-builder-lint org.flatpak.Builder manifest io.github.mpvqc.mpvQC.yml
+
 # Format code
 @format:
     uv run ruff check --fix
     uv run ruff format
 
-# Regenerate com.github.mpvqc.mpvQC.pypi.yaml
+# Regenerate io.github.mpvqc.mpvQC.pypi.yaml
 [group('support')]
 @generate-flatpak-dependencies:
     python flatpak-pypi-updater.py \
@@ -35,20 +38,20 @@
     	--dependency MarkupSafe::cp312:manylinux:x86_64 \
     	--dependency Jinja2::none:any \
     	--dependency mpv::none:any \
-    	--output com.github.mpvqc.mpvQC.pypi.yaml
-    yq -iP com.github.mpvqc.mpvQC.pypi.yaml
+    	--output io.github.mpvqc.mpvQC.pypi.yaml
+    yq -iP io.github.mpvqc.mpvQC.pypi.yaml
 
 # (1) Build flatpak
 [group('flatpak')]
 build-flatpak:
-    flatpak-builder --force-clean build-dir com.github.mpvqc.mpvQC.yml
+    flatpak-builder --force-clean build-dir io.github.mpvqc.mpvQC.yml
 
 # (2) Install flatpak
 [group('flatpak')]
 install-flatpak:
-    flatpak-builder --force-clean --user --install-deps-from=flathub --repo=repo --install build-dir com.github.mpvqc.mpvQC.yml
+    flatpak-builder --force-clean --user --install-deps-from=flathub --repo=repo --install build-dir io.github.mpvqc.mpvQC.yml
 
 # (3) Run flatpak
 [group('flatpak')]
 run-flatpak:
-    flatpak run com.github.mpvqc.mpvQC
+    flatpak run io.github.mpvqc.mpvQC

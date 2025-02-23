@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=mpvQC
-Icon=com.github.mpvqc.mpvQC
+Icon=io.github.mpvqc.mpvQC
 Exec=mpvQC
 Terminal=false
 Type=Application

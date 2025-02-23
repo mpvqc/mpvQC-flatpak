@@ -1,4 +1,4 @@
-id: com.github.mpvqc.mpvQC
+id: io.github.mpvqc.mpvQC
 runtime: org.freedesktop.Platform
 runtime-version: '24.08'
 sdk: org.freedesktop.Sdk
@@ -38,7 +38,7 @@ cleanup:
   - '*.a'
 
 modules:
-  - com.github.mpvqc.mpvQC.pypi.yaml
+  - io.github.mpvqc.mpvQC.pypi.yaml
 
   - name: luajit
     no-autogen: true
@@ -234,20 +234,20 @@ modules:
       - mkdir -p /app/my-app
       - cp -r mpvqc /app/my-app
       - install -D main.py /app/my-app
-      - install -Dm644 com.github.mpvqc.mpvQC.svg /app/share/icons/hicolor/scalable/apps/com.github.mpvqc.mpvQC.svg
-      - install -Dm644 com.github.mpvqc.mpvQC.desktop /app/share/applications/com.github.mpvqc.mpvQC.desktop
-      - install -Dm644 com.github.mpvqc.mpvQC.metainfo.xml -t /app/share/metainfo
+      - install -Dm644 io.github.mpvqc.mpvQC.svg /app/share/icons/hicolor/scalable/apps/io.github.mpvqc.mpvQC.svg
+      - install -Dm644 io.github.mpvqc.mpvQC.desktop /app/share/applications/io.github.mpvqc.mpvQC.desktop
+      - install -Dm644 io.github.mpvqc.mpvQC.metainfo.xml -t /app/share/metainfo
       - install -Dm755 launch.sh /app/bin/launch.sh
       - ln -s /app/bin/launch.sh /app/bin/mpvQC
     sources:
       - type: file
         path: launch.sh
       - type: file
-        path: com.github.mpvqc.mpvQC.desktop
+        path: io.github.mpvqc.mpvQC.desktop
       - type: file
-        path: com.github.mpvqc.mpvQC.metainfo.xml
+        path: io.github.mpvqc.mpvQC.metainfo.xml
       - type: file
-        path: com.github.mpvqc.mpvQC.svg
+        path: io.github.mpvqc.mpvQC.svg
 
       - type: archive  # todo use url to release artifact once we release
         url: https://github.com/trin94/test/releases/download/v0.9.0-3/release-build-linux.zip

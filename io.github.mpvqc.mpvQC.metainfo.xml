@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2022 - mpvQC developers -->
 <component type="desktop-application">
-    <id>com.github.mpvqc.mpvQC.desktop</id>
+    <id>io.github.mpvqc.mpvQC.desktop</id>
 
     <name>mpvQC</name>
     <summary>A libmpv-based application for quick and easy creation of video file quality control reports.
