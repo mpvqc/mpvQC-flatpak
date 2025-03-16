@@ -13,22 +13,22 @@ jobs:
       options: --privileged
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Setup GPG
-      id: gpg
-      uses: crazy-max/ghaction-import-gpg@v6
-      with:
-        gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-        passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      - name: Setup GPG
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-    - uses: andyholmes/flatter@main
-      with:
-        files: io.github.mpvqc.mpvQC.yml
-        gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
-        upload-pages-artifact: true
-        upload-pages-includes: |
-          mpvQC.flatpakref
+      - uses: andyholmes/flatter@main
+        with:
+          files: io.github.mpvqc.mpvQC.yml
+          gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
+          upload-pages-artifact: true
+          upload-pages-includes: |
+            mpvQC.flatpakref
 
   deploy:
     name: Deploy

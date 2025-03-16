@@ -235,11 +235,11 @@ modules:
       - type: file
         path: io.github.mpvqc.mpvQC.svg
 
-      - type: archive  # todo use url to release artifact once we release
+      - type: archive # todo use url to release artifact once we release
         url: https://github.com/trin94/test/releases/download/v0.9.0-3/release-build-linux.zip
         sha256: c81965020d055dabe1c320260d7e0a61088aa0fbe5bd6c4d42af54ecab6f47e2
         strip-components: 0
 
-      # local testing
-      # - type: dir
-      #  path: /home/elias/PycharmProjects/mpvQC/build/release
+        # local testing
+        # - type: dir
+        #  path: /home/elias/PycharmProjects/mpvQC/build/release
