@@ -25,17 +25,16 @@ BUILD_DIR := 'build-dir'
 
 # Initialize repository
 @init:
-    uv sync
+    uv sync --group dev
 
 # Format code
 @format:
-    uv run ruff check --fix
-    uv run ruff format
+    uv run pre-commit run --all-files
 
 # Regenerate Python dependency file
 [group('support')]
 @generate-flatpak-dependencies:
-    python flatpak-pypi-updater.py \
+    uv run flatpak-pypi-updater.py \
     	--dependency inject::none:any \
     	--dependency PySide6-Essentials==6.8.2::manylinux:x86_64 \
     	--dependency shiboken6==6.8.2::manylinux:x86_64 \
@@ -43,7 +42,6 @@ BUILD_DIR := 'build-dir'
     	--dependency Jinja2::none:any \
     	--dependency mpv::none:any \
     	--output {{ MANIFEST_PYPI_FILE }}
-    yq -iP {{ MANIFEST_PYPI_FILE }}
 
 # Lint flatpak appstream file
 [group('flatpak-lint')]
