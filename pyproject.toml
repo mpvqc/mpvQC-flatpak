@@ -8,9 +8,9 @@ dependencies = [
     "PyYaml",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-    "ruff>=0.9.5",
+    "pre-commit>=4.1.0",
 ]
 
 [tool.ruff]
