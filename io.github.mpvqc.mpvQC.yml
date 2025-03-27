@@ -21,14 +21,6 @@ build-options:
 cleanup:
   - /include
   - /lib/pkgconfig
-  - /lib/python3.12/site-packages/PySide6/examples
-  - /lib/python3.12/site-packages/PySide6/lupdate
-  - /lib/python3.12/site-packages/PySide6/assistant
-  - /lib/python3.12/site-packages/PySide6/qmllint
-  - /lib/python3.12/site-packages/PySide6/linguist
-  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6WebEngineCore.so.6
-  - /lib/python3.12/site-packages/PySide6/Qt/translations/qtwebengine_locales
-  - /lib/python3.12/site-packages/PySide6/Qt/resources
   - /man
   - /share/doc
   - /share/gtk-doc
