@@ -36,8 +36,8 @@ BUILD_DIR := 'build-dir'
 @generate-flatpak-dependencies:
     uv run flatpak-pypi-updater.py \
     	--dependency inject::none:any \
-    	--dependency PySide6-Essentials==6.8.2::manylinux:x86_64 \
-    	--dependency shiboken6==6.8.2::manylinux:x86_64 \
+    	--dependency PySide6-Essentials==6.8.3::manylinux:x86_64 \
+    	--dependency shiboken6==6.8.3::manylinux:x86_64 \
     	--dependency MarkupSafe::cp312:manylinux:x86_64 \
     	--dependency Jinja2::none:any \
     	--dependency mpv::none:any \
