@@ -10,12 +10,12 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "pre-commit>=4.1.0",
+    "pre-commit>=4.2.0",
 ]
 
 [tool.ruff]
 line-length = 120
-target-version = "py312"
+target-version = "py313"
 
 [tool.ruff.lint]
 extend-select = ["I"]
