@@ -41,6 +41,27 @@ BUILD_DIR := 'build-dir'
     	--dependency MarkupSafe::cp312:manylinux:x86_64 \
     	--dependency Jinja2::none:any \
     	--dependency mpv::none:any \
+    	--cleanup "/bin" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/lupdate" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/qmlls" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/qmlformat" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/assistant" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/linguist" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/designer" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/lrelease" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/qmllint" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/svgtoqml" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/QtWidgets.abi3.so" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Widgets.so.6" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Designer.so.6" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/lib/libQt6DesignerComponents.so.6" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Imagine.so.6" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Fusion.so.6" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Universal.so.6" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/translations/assistant_*" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/translations/designer_*" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/translations/linguist_*" \
+    	--cleanup "/lib/python3.12/site-packages/PySide6/Qt/translations/qt_help_*" \
     	--output {{ MANIFEST_PYPI_FILE }}
 
 # Lint flatpak appstream file

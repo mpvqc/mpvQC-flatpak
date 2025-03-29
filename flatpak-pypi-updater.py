@@ -120,22 +120,34 @@ def main():
         default=[],
         help="dependency to consider: dependency::filename-filter1:filename-filter2",
     )
+    parser.add_argument(
+        "--cleanup",
+        type=str,
+        action="append",
+        default=[],
+        help="items to add to the flatpak manifest cleanup property",
+    )
     parser.add_argument("-o", "--output", help="Output file name", required=True)
     run(parser.parse_args())
 
 
 def run(args):
-    output = Path(args.output).absolute()
-
     updater = RequirementsUpdater()
     updater.configure_for(args.dependency)
     updater.resolve()
 
-    requirements = updater.extract()
-    dump_yml_requirements(output, requirements)
+    dump_yml_requirements(
+        output=Path(args.output).absolute(),
+        requirements=updater.extract(),
+        cleanup=args.cleanup,
+    )
 
 
-def dump_yml_requirements(output, requirements):
+def dump_yml_requirements(
+    output: Path,
+    requirements: list[ResolvedRequirement],
+    cleanup: list[str],
+):
     app_names = " ".join(f"{req.name.lower()}~={req.version}" for req in requirements)
     sources = [
         {
@@ -147,9 +159,7 @@ def dump_yml_requirements(output, requirements):
     ]
     yaml_object = {
         "name": "pypi-dependencies",
-        "cleanup": [
-            "/bin",
-        ],
+        "cleanup": cleanup,
         "buildsystem": "simple",
         "build-commands": [
             (

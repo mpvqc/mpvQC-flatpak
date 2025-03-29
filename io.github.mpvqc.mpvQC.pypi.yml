@@ -3,6 +3,26 @@ build-commands:
 buildsystem: simple
 cleanup:
   - /bin
+  - /lib/python3.12/site-packages/PySide6/lupdate
+  - /lib/python3.12/site-packages/PySide6/qmlls
+  - /lib/python3.12/site-packages/PySide6/qmlformat
+  - /lib/python3.12/site-packages/PySide6/assistant
+  - /lib/python3.12/site-packages/PySide6/linguist
+  - /lib/python3.12/site-packages/PySide6/designer
+  - /lib/python3.12/site-packages/PySide6/lrelease
+  - /lib/python3.12/site-packages/PySide6/qmllint
+  - /lib/python3.12/site-packages/PySide6/svgtoqml
+  - /lib/python3.12/site-packages/PySide6/QtWidgets.abi3.so
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Widgets.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Designer.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6DesignerComponents.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Imagine.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Fusion.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Universal.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/translations/assistant_*
+  - /lib/python3.12/site-packages/PySide6/Qt/translations/designer_*
+  - /lib/python3.12/site-packages/PySide6/Qt/translations/linguist_*
+  - /lib/python3.12/site-packages/PySide6/Qt/translations/qt_help_*
 name: pypi-dependencies
 sources:
   - sha256: 85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
