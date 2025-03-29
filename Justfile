@@ -87,12 +87,19 @@ BUILD_DIR := 'build-dir'
 # (1) Build flatpak
 [group('flatpak')]
 build-flatpak:
-    flatpak-builder --force-clean {{ BUILD_DIR }} {{ MANIFEST_FILE }}
+    flatpak-builder \
+        --force-clean {{ BUILD_DIR }} {{ MANIFEST_FILE }}
 
 # (2) Install flatpak
 [group('flatpak')]
 install-flatpak:
-    flatpak-builder --force-clean --user --install-deps-from=flathub --repo=repo --install {{ BUILD_DIR }} {{ MANIFEST_FILE }}
+    flatpak-builder \
+        --force-clean \
+        --user \
+        --install-deps-from=flathub \
+        --disable-download \
+        --repo=repo \
+        --install {{ BUILD_DIR }} {{ MANIFEST_FILE }}
 
 # (3) Run flatpak
 [group('flatpak')]
