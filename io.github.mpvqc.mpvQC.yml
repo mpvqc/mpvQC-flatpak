@@ -13,10 +13,8 @@ finish-args:
   - --socket=pulseaudio
 
 build-options:
-  cflags: -O2 -g
-  cxxflags: -O2 -g
-  env:
-    V: '1'
+  cflags: -O2
+  cxxflags: -O2
 
 cleanup:
   - /include
@@ -41,89 +39,19 @@ modules:
     sources:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
+        mirror-urls:
+          - https://luajit.org/git/luajit.git
         disable-shallow-clone: true
-        commit: a4f56a459a588ae768801074b46ba0adcfb49eb1
+        commit: 538a82133ad6fddfd0ca64de167c4aca3bc1a2da
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
+          commit-query: .commit.sha
+          version-query: .commit.sha
+          timestamp-query: .commit.commit.committer.date
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
-
-  - name: libv4l2
-    cleanup:
-      - /sbin
-      - /bin
-      - /include
-      - /lib/*.la
-      - /lib/*/*.la
-      - /lib*/*/*/*.la
-      - /lib/pkgconfig
-      - /share/man
-    config-opts:
-      - --disable-static
-      - --disable-bpf
-      - --with-udevdir=/app/lib/udev
-    sources:
-      - type: archive
-        url: https://linuxtv.org/downloads/v4l-utils/v4l-utils-1.24.1.tar.bz2
-        sha256: cbb7fe8a6307f5ce533a05cded70bb93c3ba06395ab9b6d007eb53b75d805f5b
-
-  - name: nv-codec-headers
-    cleanup:
-      - '*'
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: git
-        url: https://github.com/FFmpeg/nv-codec-headers.git
-        tag: n12.2.72.0
-        commit: c69278340ab1d5559c7d7bf0edf615dc33ddbba7
-        x-checker-data:
-          type: git
-          tag-pattern: ^n([\d.]+)$
-
-  - name: ffmpeg
-    cleanup:
-      - "/include"
-      - "/lib/pkgconfig"
-      - "/share/ffmpeg/examples"
-    config-opts:
-      - "--disable-debug"
-      - "--disable-doc"
-      - "--disable-encoders"
-      - "--disable-muxers"
-      - "--disable-programs"
-      - "--disable-static"
-      - "--enable-encoder=png"
-      - "--enable-gnutls"
-      - "--enable-libdav1d"
-      - "--enable-libv4l2"
-      - "--enable-shared"
-    sources:
-      - type: git
-        url: https://github.com/FFmpeg/FFmpeg.git
-        commit: b08d7969c550a804a59511c7b83f2dd8cc0499b8
-        tag: n7.1
-        x-checker-data:
-          type: git
-          tag-pattern: ^n([\d.]{3,7})$
-
-  - name: libass
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-    config-opts:
-      - --disable-static
-      - --enable-asm
-      - --enable-harfbuzz
-      - --enable-fontconfig
-    sources:
-      - type: git
-        url: https://github.com/libass/libass.git
-        tag: 0.17.3
-        commit: e46aedea0a0d17da4c4ef49d84b94a7994664ab5
-        x-checker-data:
-          type: git
-          tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
 
   - name: uchardet
     buildsystem: cmake-ninja
@@ -145,6 +73,340 @@ modules:
           version-pattern: uchardet-(\d\.\d+\.?\d*).tar.xz
           url-template: https://www.freedesktop.org/software/uchardet/releases/uchardet-$version.tar.xz
 
+  - name: libass
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    config-opts:
+      - --disable-static
+      - --enable-asm
+      - --enable-harfbuzz
+      - --enable-fontconfig
+    sources:
+      - type: git
+        url: https://github.com/libass/libass.git
+        tag: 0.17.3
+        commit: e46aedea0a0d17da4c4ef49d84b94a7994664ab5
+        x-checker-data:
+          type: git
+          tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
+
+  # libgcrypt-1.10.3 build fails with freedeskop 24.08
+  - name: libgcrypt
+    config-opts:
+      - --disable-static
+      - --disable-doc
+    sources:
+      - type: git
+        url: https://dev.gnupg.org/source/libgcrypt.git
+        tag: libgcrypt-1.10.3
+        commit: aa1610866f8e42bdc272584f0a717f32ee050a22
+        # disabled for libgcrypt-1.11 because of build fail
+        #x-checker-data:
+        #  type: anitya
+        #  project-id: 1623
+        #  stable-only: true
+        #  tag-template: libgcrypt-$version
+
+  - name: libaacs
+    config-opts:
+      - --disable-static
+      - --disable-bdjava-jar
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    sources:
+      - sha256: a88aa0ebe4c98a77f7aeffd92ab3ef64ac548c6b822e8248a8b926725bea0a39
+        type: archive
+        url: https://download.videolan.org/pub/videolan/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
+        mirror-urls:
+          - https://videolan.mirror.ba/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
+          - https://videolan.c3sl.ufpr.br/libaacs/0.11.1/libaacs-0.11.1.tar.bz2
+        x-checker-data:
+          type: html
+          url: https://www.videolan.org/developers/libaacs.html
+          version-pattern: Latest release is <b>libaacs (\d\.\d+\.?\d*)</b>
+          url-template: https://download.videolan.org/pub/videolan/libaacs/$version/libaacs-$version.tar.bz2
+
+  - name: zimg
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/doc
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.5
+        sha256: 1b8998f03f4a49e4d730033143722b32bc28a5306ef809ccfb3b4bbb29e4b784
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
+          url-query: .tarball_url
+          version-query: .tag_name | sub("^release-"; "")
+          timestamp-query: .published_at
+
+  - name: Tesseract
+    config-opts:
+      - --disable-static
+    modules:
+      - name: Leptonica
+        config-opts:
+          - --disable-static
+          - --with-pic
+        sources:
+          - type: archive
+            url: http://www.leptonica.org/source/leptonica-1.85.0.tar.gz
+            sha256: 3745ae3bf271a6801a2292eead83ac926e3a9bc1bf622e9cd4dd0f3786e17205
+            x-checker-data:
+              type: anitya
+              project-id: 1549
+              stable-only: true
+              url-template: http://www.leptonica.org/source/leptonica-$version.tar.gz
+        cleanup:
+          - /bin
+    sources:
+      - type: git
+        url: https://github.com/tesseract-ocr/tesseract.git
+        tag: 5.5.0
+        commit: 64eab6c457b2337dd690746a5fde5c222b40d5f8
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/tesseract-ocr/tesseract/releases/latest
+          timestamp-query: .published_at
+          tag-query: .tag_name
+          version-query: .tag_name
+    cleanup:
+      - /bin
+
+  - name: ImageMagick
+    config-opts:
+      - --disable-static
+      - --disable-docs
+      - --with-hdri
+      - --with-pic
+    sources:
+      - type: archive
+        url: https://github.com/ImageMagick/ImageMagick/archive/7.1.1-46.tar.gz
+        sha256: 58cd8f7f2c9aaf49dba5af6f740a7a295cecb76493c475402265b3e7c21e3cd0
+        x-checker-data:
+          type: anitya
+          project-id: 1372
+          stable-only: true
+          url-template: https://github.com/ImageMagick/ImageMagick/archive/$version.tar.gz
+    cleanup:
+      - /bin
+      - /etc
+      - /lib/ImageMagick*
+      - /share/ImageMagick*
+
+  - name: rubberband
+    buildsystem: meson
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    sources:
+      - type: git
+        url: https://github.com/breakfastquay/rubberband.git
+        mirror-urls:
+          - https://hg.sr.ht/~breakfastquay/rubberband
+        tag: v4.0.0
+        commit: 1d95888bec3ae0a17c0c4af791810d5a63f6bc35
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: mujs
+    buildsystem: autotools
+    no-autogen: true
+    make-args:
+      - release
+    make-install-args:
+      - prefix=/app
+      - install-shared
+    cleanup:
+      - /bin
+      - /include
+      - /lib/pkgconfig
+    sources:
+      - type: git
+        url: https://github.com/ccxvii/mujs.git
+        mirror-urls:
+          - http://git.ghostscript.com/mujs.git
+        tag: 1.3.6
+        commit: cc569c5fa9a7a2498177693b5617605c2ff5b260
+        x-checker-data:
+          type: git
+          url: https://api.github.com/repos/ccxvii/mujs/tags
+          tag-pattern: ^([\d.]+)$
+
+  - name: nv-codec-headers
+    cleanup:
+      - '*'
+    no-autogen: true
+    make-install-args:
+      - PREFIX=/app
+    sources:
+      - type: git
+        url: https://github.com/FFmpeg/nv-codec-headers.git
+        mirror-urls:
+          - https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+        tag: n13.0.19.0
+        commit: e844e5b26f46bb77479f063029595293aa8f812d
+        x-checker-data:
+          type: git
+          tag-pattern: ^n([\d.]+)$
+
+  - name: x264
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+    config-opts:
+      - --disable-cli
+      - --enable-shared
+    sources:
+      - type: git
+        url: https://github.com/mirror/x264.git
+        commit: 31e19f92f00c7003fa115047ce50978bc98c3a0d
+        # Every commit to the stable branch is considered a release
+        # https://code.videolan.org/videolan/x264/-/issues/35
+        x-checker-data:
+          type: json
+          url: https://code.videolan.org/api/v4/projects/536/repository/branches/stable
+          commit-query: .commit.id
+          version-query: .commit.short_id
+          timestamp-query: .commit.created_at
+
+  - name: x265
+    buildsystem: cmake
+    subdir: source
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DBUILD_STATIC=0
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/man
+    sources:
+      - type: git
+        url: https://bitbucket.org/multicoreware/x265_git.git
+        tag: '4.0' # build is failing with 4.1 - we wait for 4.2
+        commit: 6318f223684118a2c71f67f3f4633a9e35046b00
+        #x-checker-data:
+        #  type: git
+        #  tag-pattern: ^([\d.]+)$
+
+  - name: libmysofa
+    buildsystem: cmake
+    config-opts:
+      - -DBUILD_TESTS=OFF
+    sources:
+      - type: git
+        commit: 444d2c1d7ececf5cc2d96d3b17b209047b02318d
+        tag: v1.3.3
+        url: https://github.com/hoene/libmysofa.git
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
+
+  - name: libbs2b
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://downloads.sourceforge.net/sourceforge/bs2b/libbs2b-3.1.0.tar.gz
+        sha256: 6aaafd81aae3898ee40148dd1349aab348db9bfae9767d0e66e0b07ddd4b2528
+        x-checker-data:
+          type: html
+          url: https://sourceforge.net/projects/bs2b/files/libbs2b/
+          version-pattern: projects/bs2b/files/libbs2b/(\d+\.\d+\.\d+)
+          url-template: https://downloads.sourceforge.net/sourceforge/bs2b/libbs2b-$version.tar.gz
+      # https://src.fedoraproject.org/rpms/libbs2b/blob/rawhide/f/libbs2b.spec#_40
+      - type: shell
+        commands:
+          - sed -i -e 's/lzma/xz/g' configure.ac
+          - autoreconf -vif
+
+  - name: ffmpeg
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+      - /share/ffmpeg/examples
+    config-opts:
+      - --disable-debug
+      - --disable-doc
+      - --disable-static
+      - --enable-encoder=png
+      - --enable-gnutls
+      - --enable-gpl
+      - --enable-shared
+      - --enable-version3
+      - --enable-libaom
+      - --enable-libass
+      - --enable-libbs2b
+      - --enable-libdav1d
+      - --enable-libfreetype
+      - --enable-libmp3lame
+      - --enable-libopus
+      - --enable-libjxl
+      - --enable-libmysofa
+      - --enable-libtheora
+      - --enable-libv4l2
+      - --enable-libvorbis
+      - --enable-libvpx
+      - --enable-libx264
+      - --enable-libx265
+      - --enable-libwebp
+      - --enable-libxml2
+      - --enable-vulkan
+    sources:
+      - type: git
+        url: https://github.com/FFmpeg/FFmpeg.git
+        mirror-urls:
+          - https://git.ffmpeg.org/ffmpeg.git
+        commit: db69d06eeeab4f46da15030a80d539efb4503ca8
+        tag: n7.1.1
+        x-checker-data:
+          type: git
+          tag-pattern: ^n([\d.]{3,7})$
+
+  - name: libsixel
+    buildsystem: meson
+    cleanup:
+      - /include
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        archive-type: tar
+        url: https://api.github.com/repos/libsixel/libsixel/tarball/refs/tags/v1.10.5
+        sha256: 402da9e24caea62fe1e4c5d6f9c9211141f7a5d8016e717527ecde10c5522344
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/libsixel/libsixel/tags
+          url-query: .[0].tarball_url
+          version-query: .[0].name
+
+  - name: vapoursynth
+    config-opts:
+      - --with-python-prefix=${FLATPAK_DEST}
+
+    sources:
+      - type: archive
+        url: https://github.com/vapoursynth/vapoursynth/archive/refs/tags/R70.tar.gz
+        sha256: 59c813ec36046be33812408ff00e16cae63c6843af6acf4e34595910a80e267b
+        x-checker-data:
+          type: anitya
+          project-id: 15982
+          stable-only: true
+          url-template: https://github.com/vapoursynth/vapoursynth/archive/$version.tar.gz
+
   - name: libplacebo
     buildsystem: meson
     config-opts:
@@ -156,30 +418,36 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
+        mirror-urls:
+          - https://code.videolan.org/videolan/libplacebo.git
         tag: v7.349.0
         commit: 1fd3c7bde7b943fe8985c893310b5269a09b46c5
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
 
-  - name: libmpv
+  - name: mpv
     buildsystem: meson
     config-opts:
-      - -Dlibmpv=true
-      - -Dlua=enabled
-      - -Ddebug=false
       - -Dbuild-date=false
-      - -Dalsa=disabled
+      - -Dlibmpv=true
       - -Dmanpage-build=disabled
+      - -Dcdda=disabled
+      - -Ddvbin=enabled
+      - -Ddvdnav=disabled
+      - -Dlibarchive=enabled
+      - -Dsdl2=enabled
+      #- -Dshaderc=enabled
       - -Dvulkan=enabled
+     # - -Dvulkan-interop=enabled
     cleanup:
       - /include
       - /lib/pkgconfig
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.39.0
-        commit: a0fba7be57f3822d967b04f0f6b6d6341e7516e7
+        tag: v0.40.0
+        commit: e48ac7ce08462f5e33af6ef9deeac6fa87eef01e
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
