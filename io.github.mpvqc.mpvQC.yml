@@ -439,7 +439,7 @@ modules:
       - -Dsdl2=enabled
       #- -Dshaderc=enabled
       - -Dvulkan=enabled
-     # - -Dvulkan-interop=enabled
+      # - -Dvulkan-interop=enabled
     cleanup:
       - /include
       - /lib/pkgconfig
@@ -495,9 +495,9 @@ modules:
       - type: file
         path: io.github.mpvqc.mpvQC.svg
 
-      - type: archive # todo use url to release artifact once we release
-        url: https://github.com/trin94/test/releases/download/v0.9.0-3/release-build-linux.zip
-        sha256: c81965020d055dabe1c320260d7e0a61088aa0fbe5bd6c4d42af54ecab6f47e2
+      - type: archive
+        url: https://github.com/mpvqc/mpvQC/releases/download/0.9.0-beta1/release-build-linux.zip
+        sha256: 3a475d9574083d08df3c99af91c6f41675fb626208de5494b6042712a4957c91
         strip-components: 0
 
         # local testing
