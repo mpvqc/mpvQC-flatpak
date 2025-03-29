@@ -38,6 +38,34 @@
     </screenshots>
 
     <releases>
+        <release date="2025-03-29" version="0.9.0-beta1">
+            <description>
+                <p>Please report any bugs or issues to help improve future releases 🚀</p>
+                <p>New and Changed Features</p>
+                <ul>
+                    <li>Updated mpv to v0.40.0</li>
+                    <li>Updated user interface based on Google’s Material Design, with new light and dark themes</li>
+                    <li>Added option to select a primary color</li>
+                    <li>Added option to display comments on the side</li>
+                    <li>Expanded export settings to toggle date and QC generator (mpvQC)</li>
+                    <li>Added keyboard shortcuts window with search functionality</li>
+                    <li>Exports are now fully customizable (Help → Extended Exports…)</li>
+                    <li>Added confirmation prompt before deleting comments</li>
+                    <li>Added context menu for comments</li>
+                    <li>Added undo and redo support for comments</li>
+                    <li>Introduced Linux flatpak build: mpvQC-flatpak</li>
+                </ul>
+                <p>Removed</p>
+                <ul>
+                    <li>Network stream playback. If needed, please open a new issue.</li>
+                </ul>
+                <p>Special Thanks</p>
+                <ul>
+                    <li>@maleunam for the new application icon</li>
+                    <li>@cN3rd for the updated Hebrew translation</li>
+                </ul>
+            </description>
+        </release>
         <release date="2024-10-01" version="0.8.1">
             <description>
                 <ul>
