@@ -62,7 +62,8 @@ class RequirementsUpdater:
             if "==" in name:
                 name, _, version = re.split("(>=|==|<=)", name)
             elif "<=" in name:
-                raise ValueError("Version requirement '<=' currently not supported")
+                msg = "Version requirement '<=' currently not supported"
+                raise ValueError(msg)
             else:
                 version = "latest"
 
@@ -88,9 +89,8 @@ class RequirementsUpdater:
             for file in files:
                 if all(f in file["filename"] for f in must_contain_substr):
                     return file
-            raise StopIteration(
-                f"Cannot find file containing all required substrings: {', '.join(must_contain_substr)}"
-            )
+            msg = f"Cannot find file containing all required substrings: {', '.join(must_contain_substr)}"
+            raise StopIteration(msg)
 
         dependencies = []
 
