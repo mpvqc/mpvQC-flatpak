@@ -48,7 +48,7 @@ class ResolvedRequirement:
 
 
 class RequirementsUpdater:
-    _requirements: dict[str, Requirement] = {}  # name mapped to object
+    _requirements: dict[str, Requirement] = {}
 
     @property
     def requirements(self) -> dict[str, Requirement]:
@@ -83,8 +83,6 @@ class RequirementsUpdater:
             self._requirements[requirement.name] = Requirement(name, version, filters, data)
 
     def extract(self) -> list[ResolvedRequirement]:
-        """"""
-
         def find_first_filename_matching(files: list, must_contain_substr: list[str]) -> dict:
             for file in files:
                 if all(f in file["filename"] for f in must_contain_substr):
