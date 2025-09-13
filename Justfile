@@ -29,7 +29,7 @@ BUILD_DIR := 'build-dir'
 
 # Format code
 @format:
-    uv run pre-commit run --all-files
+    uvx prek run --all-files
 
 # Regenerate Python dependency file
 [group('support')]
