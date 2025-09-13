@@ -14,8 +14,8 @@ finish-args:
   - --filesystem=xdg-run/pipewire-0:ro
 
 build-options:
-  cflags: -O2
-  cxxflags: -O2
+  cflags: -O2 -fno-lto
+  cxxflags: -O2 -fno-lto
 
 cleanup:
   - /include
