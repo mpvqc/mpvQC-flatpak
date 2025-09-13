@@ -1,5 +1,5 @@
 build-commands:
-  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2~=3.1.6 markupsafe~=3.0.2 pyside6-essentials~=6.8.3 inject~=5.2.1 mpv~=1.0.7 shiboken6~=6.8.3
+  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2~=3.1.6 markupsafe~=3.0.2 pyside6-essentials~=6.9.1 inject~=5.3.0 mpv~=1.0.8 shiboken6~=6.9.1
 buildsystem: simple
 cleanup:
   - /bin
@@ -31,15 +31,15 @@ sources:
   - sha256: e17c96c14e19278594aa4841ec148115f9c7615a47382ecb6b82bd8fea3ab0c8
     type: file
     url: https://files.pythonhosted.org/packages/f3/f0/89e7aadfb3749d0f52234a0c8c7867877876e0a20b60e2188e9850794c17/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  - sha256: fd57fa0c886ef99b3844173322c0023ec77cc946a0c9a0cdfbc2ac5c511053c1
+  - sha256: e5da48883f006c6206ef85874db74ddebcdf69b0281bd4f1642b1c5ac1d54aea
     type: file
-    url: https://files.pythonhosted.org/packages/f0/b2/3205336262bf88d57f01503df81ede2a0b1eecbb2a7d58978a5e5625f7c1/PySide6_Essentials-6.8.3-cp39-abi3-manylinux_2_28_x86_64.whl
-  - sha256: e40a5b1bebd8a4050b6f98f3396f3de6e9e2e411ad2a2145f16f351cb6f54e51
+    url: https://files.pythonhosted.org/packages/59/6a/ea0db68d40a1c487fd255634896f4e37b6560e3ef1f57ca5139bf6509b1f/PySide6_Essentials-6.9.1-cp39-abi3-manylinux_2_28_x86_64.whl
+  - sha256: 4758eb6c464d3e2badbbf65ac991c64752b05429d6af4c3c0e5b2765efaf7e73
     type: file
-    url: https://files.pythonhosted.org/packages/e9/db/3250e21ff08b3466e1ce8d0b2b09edcd6af7672f709d8625e142e824eb0b/inject-5.2.1-py2.py3-none-any.whl
-  - sha256: 520fb134c18185b69c7fce4aa3514f14371028022d92eb193818e9fefb1e9fe8
+    url: https://files.pythonhosted.org/packages/98/6e/b00ef8fe9a43aa3a6f5687b710832f0d876c0812bd0ce1c3af3e71bf7dd1/inject-5.3.0-py2.py3-none-any.whl
+  - sha256: dcf77f612e3f5ce49bd89393f37d286de7ac290db6b0800f1fdcfe0aeb5ba9b8
     type: file
-    url: https://files.pythonhosted.org/packages/aa/3f/d835556e34804cd0078507ed0f8a550f15d2861b875656193dd3451b720b/mpv-1.0.7-py3-none-any.whl
-  - sha256: 295a003466ca2cccf6660e2f2ceb5e6cef4af192a48a196a32d46b6f0c9ec5cb
+    url: https://files.pythonhosted.org/packages/f4/cf/0d5f52753366ecf2c3d763e331dcda54b0f20a1a8e52b175feb9c625399d/mpv-1.0.8-py3-none-any.whl
+  - sha256: efcdfa8655d34aaf8d7a0c7724def3440bd46db02f5ad3b1785db5f6ccb0a8ff
     type: file
-    url: https://files.pythonhosted.org/packages/76/a1/f1958c9d00176044ab00464cd89b6969ef3a7d2ed12d316ff1eda3dec88f/shiboken6-6.8.3-cp39-abi3-manylinux_2_28_x86_64.whl
+    url: https://files.pythonhosted.org/packages/5a/07/53b2532ecd42ff925feb06b7bb16917f5f99f9c3470f0815c256789d818b/shiboken6-6.9.1-cp39-abi3-manylinux_2_28_x86_64.whl
