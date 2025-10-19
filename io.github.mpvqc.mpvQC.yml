@@ -169,7 +169,7 @@ modules:
       - --disable-debug
       - --disable-doc
       - --disable-libv4l2
-      - --disable-programs              # libs only (keep if you don’t need ffmpeg/ffprobe)
+      - --disable-programs
       - --disable-static
       - --enable-encoder=png
       - --enable-gnutls

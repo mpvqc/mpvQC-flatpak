@@ -78,3 +78,6 @@ ignore = [
     "SLF",  # Ignore access to private members
     "PLR",  # Ignore complexity/readability issues
 ]
+
+[tool.ruff.lint.flake8-copyright]
+notice-rgx = "SPDX-FileCopyrightText: mpvQC developers"

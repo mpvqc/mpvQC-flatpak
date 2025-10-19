@@ -1,17 +1,6 @@
-# Copyright 2024
+# SPDX-FileCopyrightText: mpvQC developers
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Lesser General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Lesser General Public License for more details.
-#
-# You should have received a copy of the GNU Lesser General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# SPDX-License-Identifier: MIT
 
 APP_ID := 'io.github.mpvqc.mpvQC'
 MANIFEST_FILE := 'io.github.mpvqc.mpvQC.yml'
@@ -36,11 +25,12 @@ BUILD_DIR := 'build-dir'
 @generate-flatpak-dependencies:
     uv run flatpak-pypi-updater.py \
     	--dependency inject::none:any \
-    	--dependency PySide6-Essentials==6.9.1::manylinux:x86_64 \
-    	--dependency shiboken6==6.9.1::manylinux:x86_64 \
-    	--dependency MarkupSafe::cp312:manylinux:x86_64 \
+    	--dependency PySide6-Essentials==6.10.0::manylinux:x86_64 \
+    	--dependency shiboken6==6.10.0::manylinux:x86_64 \
+    	--dependency MarkupSafe==3.0.2::cp312:manylinux:x86_64 \
     	--dependency Jinja2::none:any \
     	--dependency mpv::none:any \
+    	--dependency loguru::none:any \
     	--cleanup "/bin" \
     	--cleanup "/lib/python3.12/site-packages/PySide6/lupdate" \
     	--cleanup "/lib/python3.12/site-packages/PySide6/qmlls" \
