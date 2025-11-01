@@ -1,48 +1,107 @@
-build-commands:
-  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2~=3.1.6 markupsafe~=3.0.2 pyside6-essentials~=6.10.0 inject~=5.3.0 loguru~=0.7.3 mpv~=1.0.8 shiboken6~=6.10.0
+name: pypi-dependencies
 buildsystem: simple
+build-commands:
+  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2~=3.1.6 markupsafe~=3.0.2 pyside6-essentials~=6.10.0 colorlog~=6.10.1 inject~=5.3.0 mpv~=1.0.8 shiboken6~=6.10.0
+sources:
+  - type: file
+    url: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
+    sha256: 85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
+  - type: file
+    url: https://files.pythonhosted.org/packages/f3/f0/89e7aadfb3749d0f52234a0c8c7867877876e0a20b60e2188e9850794c17/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+    sha256: e17c96c14e19278594aa4841ec148115f9c7615a47382ecb6b82bd8fea3ab0c8
+  - type: file
+    url: https://files.pythonhosted.org/packages/5c/75/e17efc7eb900993e0e3925885635c6cf373c817196f09bcbcc102b00ac94/pyside6_essentials-6.10.0-cp39-abi3-manylinux_2_34_x86_64.whl
+    sha256: 1d5e013a8698e37ab8ef360e6960794eb5ef20832a8d562e649b8c5a0574b2d8
+  - type: file
+    url: https://files.pythonhosted.org/packages/6d/c1/e419ef3723a074172b68aaa89c9f3de486ed4c2399e2dbd8113a4fdcaf9e/colorlog-6.10.1-py3-none-any.whl
+    sha256: 2d7e8348291948af66122cff006c9f8da6255d224e7cf8e37d8de2df3bad8c9c
+  - type: file
+    url: https://files.pythonhosted.org/packages/98/6e/b00ef8fe9a43aa3a6f5687b710832f0d876c0812bd0ce1c3af3e71bf7dd1/inject-5.3.0-py2.py3-none-any.whl
+    sha256: 4758eb6c464d3e2badbbf65ac991c64752b05429d6af4c3c0e5b2765efaf7e73
+  - type: file
+    url: https://files.pythonhosted.org/packages/f4/cf/0d5f52753366ecf2c3d763e331dcda54b0f20a1a8e52b175feb9c625399d/mpv-1.0.8-py3-none-any.whl
+    sha256: dcf77f612e3f5ce49bd89393f37d286de7ac290db6b0800f1fdcfe0aeb5ba9b8
+  - type: file
+    url: https://files.pythonhosted.org/packages/ea/09/4ffa3284a17b6b765d45b41c9a7f1b2cde6c617c853ac6f170fb62bbbece/shiboken6-6.10.0-cp39-abi3-manylinux_2_34_x86_64.whl
+    sha256: e612734da515d683696980107cdc0396a3ae0f07b059f0f422ec8a2333810234
 cleanup:
   - /bin
-  - /lib/python3.12/site-packages/PySide6/lupdate
-  - /lib/python3.12/site-packages/PySide6/qmlls
-  - /lib/python3.12/site-packages/PySide6/qmlformat
+  - /lib/python3.12/site-packages/PySide6/*.pyi
   - /lib/python3.12/site-packages/PySide6/assistant
-  - /lib/python3.12/site-packages/PySide6/linguist
   - /lib/python3.12/site-packages/PySide6/designer
+  - /lib/python3.12/site-packages/PySide6/doc
+  - /lib/python3.12/site-packages/PySide6/examples
+  - /lib/python3.12/site-packages/PySide6/glue
+  - /lib/python3.12/site-packages/PySide6/include
+  - /lib/python3.12/site-packages/PySide6/linguist
   - /lib/python3.12/site-packages/PySide6/lrelease
+  - /lib/python3.12/site-packages/PySide6/lupdate
+  - /lib/python3.12/site-packages/PySide6/py.typed
+  - /lib/python3.12/site-packages/PySide6/qmlformat
   - /lib/python3.12/site-packages/PySide6/qmllint
-  - /lib/python3.12/site-packages/PySide6/svgtoqml
-  - /lib/python3.12/site-packages/PySide6/QtWidgets.abi3.so
-  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Widgets.so.6
+  - /lib/python3.12/site-packages/PySide6/qmlls
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Concurrent.so.6
   - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Designer.so.6
   - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6DesignerComponents.so.6
-  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Imagine.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Help.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6LabsAnimation.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6LabsFolderListModel.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6LabsPlatform.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6LabsQmlModels.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6LabsSettings.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6LabsSharedImage.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6LabsWavefrontMesh.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6PrintSupport.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QmlLocalStorage.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QmlNetwork.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QmlXmlListModel.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2FluentWinUI3StyleImpl.so.6
   - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Fusion.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2FusionStyleImpl.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Imagine.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2ImagineStyleImpl.so.6
   - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2Universal.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickControls2UniversalStyleImpl.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickTest.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickTimeline.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickTimelineBlendTrees.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickVectorImageGenerator.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6QuickWidgets.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Sql.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6SvgWidgets.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Test.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6UiTools.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Widgets.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/lib/libQt6Xml.so.6
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/designer
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/generic
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/networkinformation
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/printsupport
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/qmllint
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/qmltooling
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/sqldrivers
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/tls
+  - /lib/python3.12/site-packages/PySide6/Qt/plugins/wayland-graphics-integration-server
+  - /lib/python3.12/site-packages/PySide6/Qt/qml/Qt
+  - /lib/python3.12/site-packages/PySide6/Qt/qml/QtNetwork
+  - /lib/python3.12/site-packages/PySide6/Qt/qml/QtQuick/Controls/FluentWinUI3
+  - /lib/python3.12/site-packages/PySide6/Qt/qml/QtQuick/VirtualKeyboard
   - /lib/python3.12/site-packages/PySide6/Qt/translations/assistant_*
   - /lib/python3.12/site-packages/PySide6/Qt/translations/designer_*
   - /lib/python3.12/site-packages/PySide6/Qt/translations/linguist_*
-  - /lib/python3.12/site-packages/PySide6/Qt/translations/qt_help_*
-name: pypi-dependencies
-sources:
-  - sha256: 85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
-    type: file
-    url: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
-  - sha256: e17c96c14e19278594aa4841ec148115f9c7615a47382ecb6b82bd8fea3ab0c8
-    type: file
-    url: https://files.pythonhosted.org/packages/f3/f0/89e7aadfb3749d0f52234a0c8c7867877876e0a20b60e2188e9850794c17/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-  - sha256: 1d5e013a8698e37ab8ef360e6960794eb5ef20832a8d562e649b8c5a0574b2d8
-    type: file
-    url: https://files.pythonhosted.org/packages/5c/75/e17efc7eb900993e0e3925885635c6cf373c817196f09bcbcc102b00ac94/pyside6_essentials-6.10.0-cp39-abi3-manylinux_2_34_x86_64.whl
-  - sha256: 4758eb6c464d3e2badbbf65ac991c64752b05429d6af4c3c0e5b2765efaf7e73
-    type: file
-    url: https://files.pythonhosted.org/packages/98/6e/b00ef8fe9a43aa3a6f5687b710832f0d876c0812bd0ce1c3af3e71bf7dd1/inject-5.3.0-py2.py3-none-any.whl
-  - sha256: 31a33c10c8e1e10422bfd431aeb5d351c7cf7fa671e3c4df004162264b28220c
-    type: file
-    url: https://files.pythonhosted.org/packages/0c/29/0348de65b8cc732daa3e33e67806420b2ae89bdce2b04af740289c5c6c8c/loguru-0.7.3-py3-none-any.whl
-  - sha256: dcf77f612e3f5ce49bd89393f37d286de7ac290db6b0800f1fdcfe0aeb5ba9b8
-    type: file
-    url: https://files.pythonhosted.org/packages/f4/cf/0d5f52753366ecf2c3d763e331dcda54b0f20a1a8e52b175feb9c625399d/mpv-1.0.8-py3-none-any.whl
-  - sha256: e612734da515d683696980107cdc0396a3ae0f07b059f0f422ec8a2333810234
-    type: file
-    url: https://files.pythonhosted.org/packages/ea/09/4ffa3284a17b6b765d45b41c9a7f1b2cde6c617c853ac6f170fb62bbbece/shiboken6-6.10.0-cp39-abi3-manylinux_2_34_x86_64.whl
+  - /lib/python3.12/site-packages/PySide6/Qt/translations/qt_*
+  - /lib/python3.12/site-packages/PySide6/Qt/translations/qtdeclarative_*
+  - /lib/python3.12/site-packages/PySide6/QtConcurrent.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtDesigner.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtHelp.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtPrintSupport.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtQuickTest.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtQuickWidgets.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtSql.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtSvgWidgets.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtTest.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtUiTools.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtWidgets.abi3.so
+  - /lib/python3.12/site-packages/PySide6/QtXml.abi3.so
+  - /lib/python3.12/site-packages/PySide6/svgtoqml
+  - /lib/python3.12/site-packages/PySide6/typesystems

@@ -13,6 +13,13 @@ finish-args:
   - --socket=pulseaudio
   - --filesystem=xdg-run/pipewire-0:ro
 
+#add-extensions:
+#  org.freedesktop.Platform.codecs-extra:
+#    directory: lib/codecs
+#    version: '25.08'
+#    add-ld-path: lib
+#    autodelete: false
+
 build-options:
   cflags: -O2 -fno-lto
   cxxflags: -O2 -fno-lto
@@ -208,6 +215,7 @@ modules:
     config-opts:
       - -Dvulkan=enabled
       - -Dshaderc=enabled
+      - -Ddemos=false
     cleanup:
       - /include
       - /lib/pkgconfig

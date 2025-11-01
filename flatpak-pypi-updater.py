@@ -17,7 +17,7 @@ class Requirement:
     name: str
     version: str
     filters: list[str]  # filter1:filter2:filter3
-    data: list = None
+    data: list
 
 
 @dataclass(frozen=True)
@@ -49,7 +49,7 @@ class RequirementsUpdater:
             else:
                 version = "latest"
 
-            self._requirements[name] = Requirement(name, version, filters)
+            self._requirements[name] = Requirement(name, version, filters, data=[])
 
     def resolve(self) -> None:
         for requirement in self._requirements.values():
@@ -117,16 +117,14 @@ def run(args):
     updater.resolve()
 
     dump_yml_requirements(
-        output=Path(args.output).absolute(),
+        yaml_file=Path(args.output).absolute(),
         requirements=updater.extract(),
-        cleanup=args.cleanup,
     )
 
 
 def dump_yml_requirements(
-    output: Path,
+    yaml_file: Path,
     requirements: list[ResolvedRequirement],
-    cleanup: list[str],
 ):
     app_names = " ".join(f"{req.name.lower()}~={req.version}" for req in requirements)
     sources = [
@@ -137,9 +135,12 @@ def dump_yml_requirements(
         }
         for req in requirements
     ]
+
+    # noinspection PyTypeChecker
+    cleanup = sorted(read_existing_cleanup(yaml_file), key=str.lower)
+
     yaml_object = {
         "name": "pypi-dependencies",
-        "cleanup": cleanup,
         "buildsystem": "simple",
         "build-commands": [
             (
@@ -149,10 +150,27 @@ def dump_yml_requirements(
             ),
         ],
         "sources": sources,
+        "cleanup": cleanup,
     }
-    content = yaml.dump(yaml_object, Dumper=yaml.Dumper)
-    output.write_text(content, encoding="utf-8")
 
+    content = yaml.dump(yaml_object, Dumper=yaml.Dumper, sort_keys=False)
+    yaml_file.write_text(content, encoding="utf-8")
+
+
+def read_existing_cleanup(yaml_file: Path) -> list[str]:
+    if not yaml_file.exists():
+        return []
+
+    try:
+        content = yaml_file.read_text(encoding="utf-8")
+        data = yaml.safe_load(content)
+        return data.get("cleanup", [])
+    except Exception:
+        return []
+
+
+if __name__ == "__main__":
+    main()
 
 if __name__ == "__main__":
     main()
