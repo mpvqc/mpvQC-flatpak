@@ -295,7 +295,19 @@ modules:
       - install -Dm644 io.github.mpvqc.mpvQC.metainfo.xml -t /app/share/metainfo
       - install -Dm755 launch.sh /app/bin/launch.sh
       - ln -s /app/bin/launch.sh /app/bin/mpvQC
+
+      # Copy all licenses
+      - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      - cp Apache-2.0.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      - cp BSD-3-Clause.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      - cp GPL-3.0-or-later.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      - cp LGPL-3.0.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      - cp MIT.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      - cp OFL-1.1.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      - cp PSF-2.0.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
     sources:
+      - type: dir
+        path: dependency-licenses
       - type: file
         path: launch.sh
       - type: file
