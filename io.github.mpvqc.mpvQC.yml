@@ -6,6 +6,10 @@ command: mpvQC
 
 finish-args:
   - --device=dri
+  # Home filesystem access required for:
+  # - Opening video files from user-specified locations
+  # - Saving QC reports and exports to user-chosen directories
+  # - Loading subtitle files and project documents
   - --filesystem=home
   - --share=ipc
   - --socket=wayland
@@ -53,12 +57,12 @@ modules:
         url: https://github.com/LuaJIT/LuaJIT.git
         disable-shallow-clone: true
         commit: f9140a622a0c44a99efb391cc1c2358bc8098ab7
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
-          commit-query: .commit.sha
-          version-query: .commit.sha
-          timestamp-query: .commit.commit.committer.date
+        # x-checker-data:
+        #   type: json
+        #   url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
+        #   commit-query: .commit.sha
+        #   version-query: .commit.sha
+        #   timestamp-query: .commit.commit.committer.date
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
@@ -229,9 +233,9 @@ modules:
         url: https://github.com/haasn/libplacebo.git
         tag: v7.349.0
         commit: 1fd3c7bde7b943fe8985c893310b5269a09b46c5
-        x-checker-data:
-          type: git
-          tag-pattern: ^v([\d.]+)$
+        # x-checker-data:
+        #   type: git
+        #   tag-pattern: ^v([\d.]+)$
 
   - name: mpv
     buildsystem: meson
