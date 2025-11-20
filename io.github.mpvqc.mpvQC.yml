@@ -47,10 +47,6 @@ modules:
       cflags: -O2 -fno-lto
       cxxflags: -O2 -fno-lto
     no-autogen: true
-    config-opts:
-    - -DCMAKE_BUILD_TYPE=Release
-    - -DBUILD_STATIC=0
-    - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /bin
       - /include
@@ -60,7 +56,7 @@ modules:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
         disable-shallow-clone: true
-        commit: 8518c0b40b1734901de888a0a363450c0709d3f8
+        commit: e17ee83326f73d2bbfce5750ae8dc592a3b63c27
         # x-checker-data:
         #   type: json
         #   url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -76,7 +72,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_STATIC=0
-      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5 # TODO can be removed when updating to uchardet > 0.0.8
     cleanup:
       - /bin
       - /include
@@ -120,8 +116,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.5
-        sha256: 1b8998f03f4a49e4d730033143722b32bc28a5306ef809ccfb3b4bbb29e4b784
+        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.6
+        sha256: 15140e491c4ce9db5f02a038d8a1eb53e9151b55eeed06a2899425a6ebfef367
         x-checker-data:
           type: json
           url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
@@ -164,21 +160,6 @@ modules:
           type: git
           url: https://api.github.com/repos/ccxvii/mujs/tags
           tag-pattern: ^([\d.]+)$
-
-  - name: nv-codec-headers
-    cleanup:
-      - '*'
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: git
-        url: https://github.com/FFmpeg/nv-codec-headers.git
-        tag: n13.0.19.0
-        commit: e844e5b26f46bb77479f063029595293aa8f812d
-        x-checker-data:
-          type: git
-          tag-pattern: ^n([\d.]+)$
 
   - name: ffmpeg
     cleanup:
@@ -227,7 +208,7 @@ modules:
     buildsystem: meson
     config-opts:
       - -Dvulkan=enabled
-      - -Dshaderc=disabled
+      - -Dshaderc=enabled
       - -Ddemos=false
       - -Db_lto=true
     cleanup:
@@ -236,7 +217,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
-#        tag: v7.351.0
+        #        tag: v7.351.0
         commit: 06992a53fafc1549843c8b36751e166cfe3a4079
         # x-checker-data:
         #   type: git
