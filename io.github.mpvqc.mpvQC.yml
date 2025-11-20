@@ -1,6 +1,6 @@
 id: io.github.mpvqc.mpvQC
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: mpvQC
 
@@ -56,7 +56,7 @@ modules:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
         disable-shallow-clone: true
-        commit: f9140a622a0c44a99efb391cc1c2358bc8098ab7
+        commit: e17ee83326f73d2bbfce5750ae8dc592a3b63c27
         # x-checker-data:
         #   type: json
         #   url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
@@ -72,6 +72,7 @@ modules:
     config-opts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_STATIC=0
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5 # TODO can be removed when updating to uchardet > 0.0.8
     cleanup:
       - /bin
       - /include
@@ -115,8 +116,8 @@ modules:
     sources:
       - type: archive
         archive-type: tar
-        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.5
-        sha256: 1b8998f03f4a49e4d730033143722b32bc28a5306ef809ccfb3b4bbb29e4b784
+        url: https://api.github.com/repos/sekrit-twc/zimg/tarball/release-3.0.6
+        sha256: 15140e491c4ce9db5f02a038d8a1eb53e9151b55eeed06a2899425a6ebfef367
         x-checker-data:
           type: json
           url: https://api.github.com/repos/sekrit-twc/zimg/releases/latest
@@ -160,21 +161,6 @@ modules:
           url: https://api.github.com/repos/ccxvii/mujs/tags
           tag-pattern: ^([\d.]+)$
 
-  - name: nv-codec-headers
-    cleanup:
-      - '*'
-    no-autogen: true
-    make-install-args:
-      - PREFIX=/app
-    sources:
-      - type: git
-        url: https://github.com/FFmpeg/nv-codec-headers.git
-        tag: n13.0.19.0
-        commit: e844e5b26f46bb77479f063029595293aa8f812d
-        x-checker-data:
-          type: git
-          tag-pattern: ^n([\d.]+)$
-
   - name: ffmpeg
     cleanup:
       - /include
@@ -202,8 +188,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
-        tag: n7.1.1
-        commit: db69d06eeeab4f46da15030a80d539efb4503ca8
+        tag: n8.0
+        commit: 140fd653aed8cad774f991ba083e2d01e86420c7
 
   - name: vapoursynth
     config-opts:
@@ -231,8 +217,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
-        tag: v7.349.0
-        commit: 1fd3c7bde7b943fe8985c893310b5269a09b46c5
+        #        tag: v7.351.0
+        commit: 06992a53fafc1549843c8b36751e166cfe3a4079
         # x-checker-data:
         #   type: git
         #   tag-pattern: ^v([\d.]+)$
@@ -265,6 +251,11 @@ modules:
           type: git
           tag-pattern: ^v([\d.]+)$
 
+      # required to build against ffmpeg 8.0
+      # https://github.com/mpv-player/mpv/commit/26b29fba02a2782f68e2906f837d21201fc6f1b9
+      - type: patch
+        path: patches/demux_mkv-fix-compilation-after-deprecated-definitio.patch
+
   # https://github.com/flathub/io.qt.qtwebengine.BaseApp/tree/branch/6.7/krb5
   - name: krb5
     subdir: src
@@ -281,11 +272,16 @@ modules:
     post-install:
       - install -Dm644 ../krb5.conf -t ${FLATPAK_DEST}/etc/
     sources:
+      - type: archive
+        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.1.tar.gz
+        sha256: 1a8832b8cad923ebbf1394f67e2efcf41e3a49f460285a66e35adec8fa0053af
+        x-checker-data:
+          type: html
+          url: https://kerberos.org/dist/
+          version-pattern: Kerberos V5 Release ([\d\.-]*) - current release
+          url-template: https://kerberos.org/dist/krb5/$version0.$version1/krb5-$version.tar.gz
       - type: file
         path: krb5.conf
-      - type: archive
-        url: https://kerberos.org/dist/krb5/1.21/krb5-1.21.2.tar.gz
-        sha256: 9560941a9d843c0243a71b17a7ac6fe31c7cebb5bce3983db79e52ae7e850491
 
   - name: mpvQC
     buildsystem: simple
