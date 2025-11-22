@@ -59,6 +59,13 @@ lint:
 @lint-flatpak-repo:
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
 
+# Force clean environment
+[group('flatpak')]
+clean-flatpak-resources:
+	rm -rf {{ BUILD_DIR }}
+	rm -rf .flatpak-builder
+	rm -rf repo
+
 # (1) Build flatpak
 [group('flatpak')]
 build-flatpak:
