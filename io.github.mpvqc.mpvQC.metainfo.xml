@@ -38,6 +38,58 @@
     </screenshots>
 
     <releases>
+        <release date="2025-11-22" version="0.9.0-beta2">
+            <description>
+                <p>Enhanced Subtitle Integration</p>
+                <ul>
+                    <li>External subtitles can now be included in document exports (configurable via settings)</li>
+                    <li>Automatic detection and loading of subtitles referenced in imported documents</li>
+                    <li>Automatic video detection from subtitle files (ASS/SSA format)</li>
+                    <li>Cascading video detection: when importing documents that reference subtitles (ASS/SSA), the
+                        application now automatically detects and loads any videos referenced within those subtitle
+                        files
+                    </li>
+                </ul>
+                <p>UI Enhancements</p>
+                <ul>
+                    <li>Refined color scheme for menus and popups</li>
+                    <li>Migrated from Material Icons to Material Symbols</li>
+                </ul>
+                <p>Fixes and Improvements</p>
+                <ul>
+                    <li>Improved platform integrations for both Windows and Linux</li>
+                    <li>Enhanced right-to-left (RTL) layout support</li>
+                    <li>Restored mouse back/forward button functionality for navigating between video chapters</li>
+                    <li>Lots of small fixes</li>
+                </ul>
+                <p>Internationalization</p>
+                <ul>
+                    <li>Added Portuguese translation (thanks @Diogo23R)</li>
+                    <li>Updated Spanish translation (thanks @RcUchiha)</li>
+                    <li>Updated Hebrew translation (thanks @cN3rd)</li>
+                </ul>
+                <p>Windows: Faster Startup</p>
+                <ul>
+                    <li>Improved startup time, especially for cold starts</li>
+                    <li>Added splash screen during application initialization</li>
+                </ul>
+                <p>Linux: Improved Video Performance</p>
+                <ul>
+                    <li>Video rendering now happens in a background thread, which should improve UI responsiveness and
+                        playback smoothness. However, this adds complexity, so please report any playback or sync issues
+                        you encounter.
+                    </li>
+                    <li>Action required: Update your mpv.conf via Options → Edit mpv.conf by either restoring default
+                        values or removing the video-timing-offset option
+                    </li>
+                </ul>
+                <p>Special Thanks</p>
+                <ul>
+                    <li>@RcUchiha for quality assurance and bug reports</li>
+                </ul>
+                <p>Please report any bugs or issues to help improve future releases.</p>
+            </description>
+        </release>
         <release date="2025-03-29" version="0.9.0-beta1">
             <description>
                 <p>Please report any bugs or issues to help improve future releases 🚀</p>
