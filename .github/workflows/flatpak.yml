@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/andyholmes/flatter/freedesktop:24.08
+      image: ghcr.io/andyholmes/flatter/freedesktop:25.08
       options: --privileged
 
     steps:
