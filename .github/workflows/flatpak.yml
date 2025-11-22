@@ -15,6 +15,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Install unzip
+        run: |
+          dnf install -y unzip
+
       - name: Setup GPG
         id: gpg
         uses: crazy-max/ghaction-import-gpg@v6
