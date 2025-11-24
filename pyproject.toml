@@ -9,9 +9,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = [
-    "pre-commit>=4.3.0",
-]
+dev = []
 
 [tool.ruff]
 line-length = 120
