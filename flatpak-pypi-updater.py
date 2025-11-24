@@ -171,6 +171,3 @@ def read_existing_cleanup(yaml_file: Path) -> list[str]:
 
 if __name__ == "__main__":
     main()
-
-if __name__ == "__main__":
-    main()
