@@ -36,7 +36,6 @@ lint:
     	--dependency MarkupSafe==3.0.2::cp312:manylinux:x86_64 \
     	--dependency Jinja2::none:any \
     	--dependency mpv::none:any \
-    	--dependency colorlog::none:any \
     	--output {{ MANIFEST_PYPI_FILE }}
 
 # Lint flatpak appstream file
