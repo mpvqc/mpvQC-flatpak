@@ -56,13 +56,13 @@ modules:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
         disable-shallow-clone: true
-        commit: e17ee83326f73d2bbfce5750ae8dc592a3b63c27
-        # x-checker-data:
-        #   type: json
-        #   url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
-        #   commit-query: .commit.sha
-        #   version-query: .commit.sha
-        #   timestamp-query: .commit.commit.committer.date
+        commit: 7152e15489d2077cd299ee23e3d51a4c599ab14f
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
+          commit-query: .commit.sha
+          version-query: .commit.sha
+          timestamp-query: .commit.commit.committer.date
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
@@ -156,10 +156,11 @@ modules:
         url: https://github.com/ccxvii/mujs.git
         tag: 1.3.6
         commit: cc569c5fa9a7a2498177693b5617605c2ff5b260
-        x-checker-data:
-          type: git
-          url: https://api.github.com/repos/ccxvii/mujs/tags
-          tag-pattern: ^([\d.]+)$
+        # failing build for 1.3.7
+        #x-checker-data:
+        #  type: git
+        #  url: https://api.github.com/repos/ccxvii/mujs/tags
+        #  tag-pattern: ^([\d.]+)$
 
   - name: ffmpeg
     cleanup:
@@ -175,21 +176,26 @@ modules:
       - --enable-encoder=png
       - --enable-gnutls
       - --enable-gpl
-      - --enable-shared
-      - --enable-version3
       - --enable-libass
       - --enable-libdav1d
+      - --enable-libdrm
       - --enable-libfreetype
-      - --enable-nvenc
-      - --enable-vaapi
-      - --enable-vdpau
-      - --enable-vulkan
+      - --enable-libopus
+      - --enable-libvorbis
+      - --enable-libvpx
       - --enable-lto
+      - --enable-shared
+      - --enable-vaapi
+      - --enable-version3
+      - --enable-vulkan
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
-        tag: n8.0
-        commit: 140fd653aed8cad774f991ba083e2d01e86420c7
+        tag: n8.0.1
+        commit: 894da5ca7d742e4429ffb2af534fcda0103ef593
+        x-checker-data:
+          type: git
+          tag-pattern: ^n([\d.]{3,7})$
 
   - name: vapoursynth
     config-opts:
