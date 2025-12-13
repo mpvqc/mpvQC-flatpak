@@ -38,6 +38,24 @@
     </screenshots>
 
     <releases>
+        <release date="2025-12-13" version="0.9.0-beta3">
+            <description>
+                <p>Please report any bugs or issues to help improve future releases.</p>
+                <p>New: Video Control Toolbar</p>
+                <ul>
+                    <li>Added a toolbar with quick access to frame stepping (forward/backward) and track cycling
+                        (subtitles/audio)
+                    </li>
+                </ul>
+                <p>Linux: Revert to Previous Renderer</p>
+                <ul>
+                    <li>Restored previous video rendering approach after discovering hardware compatibility issues</li>
+                    <li>Note: If you manually modified mpv.conf in a recent version, please restore default values via
+                        Options → Edit mpv.conf
+                    </li>
+                </ul>
+            </description>
+        </release>
         <release date="2025-11-22" version="0.9.0-beta2">
             <description>
                 <p>Enhanced Subtitle Integration</p>

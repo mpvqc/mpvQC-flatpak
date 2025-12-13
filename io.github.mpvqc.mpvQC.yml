@@ -324,8 +324,8 @@ modules:
         path: io.github.mpvqc.mpvQC.svg
 
       - type: archive
-        url: https://github.com/mpvqc/mpvQC/releases/download/0.9.0-beta2/release-build-linux.zip
-        sha256: e6403549e35b7e4aba972adb9ff123c8c5865bd0b1e726ba1d871f7e523e6fed
+        url: https://github.com/mpvqc/mpvQC/releases/download/0.9.0-beta3/release-build-linux.zip
+        sha256: b907f62b7957229a5fb7c0e2ae64acd8b827e0df81571db19a7275b64a8dea5a
         strip-components: 0
 
         # local testing
