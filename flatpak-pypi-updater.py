@@ -8,6 +8,7 @@ import re
 import urllib.request
 from dataclasses import dataclass
 from pathlib import Path
+from typing import ClassVar
 
 import yaml
 
@@ -30,7 +31,7 @@ class ResolvedRequirement:
 
 
 class RequirementsUpdater:
-    _requirements: dict[str, Requirement] = {}
+    _requirements: ClassVar[dict[str, Requirement]] = {}
 
     @property
     def requirements(self) -> dict[str, Requirement]:
@@ -165,7 +166,7 @@ def read_existing_cleanup(yaml_file: Path) -> list[str]:
         content = yaml_file.read_text(encoding="utf-8")
         data = yaml.safe_load(content)
         return data.get("cleanup", [])
-    except Exception:
+    except (yaml.YAMLError, AttributeError):
         return []
 
 
