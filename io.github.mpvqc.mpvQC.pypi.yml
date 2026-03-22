@@ -1,17 +1,17 @@
 name: pypi-dependencies
 buildsystem: simple
 build-commands:
-  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2~=3.1.6 markupsafe~=3.0.2 pyside6-essentials~=6.10.1 inject~=5.3.0 mpv~=1.0.8 shiboken6~=6.10.1
+  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation jinja2~=3.1.6 markupsafe~=3.0.3 pyside6-essentials~=6.10.2 inject~=5.3.0 mpv~=1.0.8 shiboken6~=6.10.2
 sources:
   - type: file
     url: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
     sha256: 85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
   - type: file
-    url: https://files.pythonhosted.org/packages/f3/f0/89e7aadfb3749d0f52234a0c8c7867877876e0a20b60e2188e9850794c17/MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-    sha256: e17c96c14e19278594aa4841ec148115f9c7615a47382ecb6b82bd8fea3ab0c8
+    url: https://files.pythonhosted.org/packages/3c/2e/8d0c2ab90a8c1d9a24f0399058ab8519a3279d1bd4289511d74e909f060e/markupsafe-3.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    sha256: d6dd0be5b5b189d31db7cda48b91d7e0a9795f31430b7f271219ab30f1d3ac9d
   - type: file
-    url: https://files.pythonhosted.org/packages/5f/8e/b69ba7fa0c701f3f4136b50460441697ec49ee6ea35c229eb2a5ee4b5952/pyside6_essentials-6.10.1-cp39-abi3-manylinux_2_34_x86_64.whl
-    sha256: e9ccbfb58c03911a0bce1f2198605b02d4b5ca6276bfc0cbcf7c6f6393ffb856
+    url: https://files.pythonhosted.org/packages/99/20/3a6ca95052e1744b5a3eba164e2dd451d358a3dcaf78179de4b45c8e3f47/pyside6_essentials-6.10.2-cp39-abi3-manylinux_2_34_x86_64.whl
+    sha256: 660aea45bfa36f1e06f799b934c2a7df963bd31abc5083e8bb8a5bfaef45686b
   - type: file
     url: https://files.pythonhosted.org/packages/98/6e/b00ef8fe9a43aa3a6f5687b710832f0d876c0812bd0ce1c3af3e71bf7dd1/inject-5.3.0-py2.py3-none-any.whl
     sha256: 4758eb6c464d3e2badbbf65ac991c64752b05429d6af4c3c0e5b2765efaf7e73
@@ -19,8 +19,8 @@ sources:
     url: https://files.pythonhosted.org/packages/f4/cf/0d5f52753366ecf2c3d763e331dcda54b0f20a1a8e52b175feb9c625399d/mpv-1.0.8-py3-none-any.whl
     sha256: dcf77f612e3f5ce49bd89393f37d286de7ac290db6b0800f1fdcfe0aeb5ba9b8
   - type: file
-    url: https://files.pythonhosted.org/packages/56/ba/b50c1a44b3c4643f482afbf1a0ea58f393827307100389ce29404f9ad3b0/shiboken6-6.10.1-cp39-abi3-manylinux_2_34_x86_64.whl
-    sha256: f4221a52dfb81f24a0d20cc4f8981cb6edd810d5a9fb28287ce10d342573a0e4
+    url: https://files.pythonhosted.org/packages/52/88/292e0576489c46624ab419ee284ac5a59ae10e2eb34a58b6abca51dfd290/shiboken6-6.10.2-cp39-abi3-manylinux_2_34_x86_64.whl
+    sha256: ace0790032d9cb0adda644b94ee28d59410180d9773643bb6cf8438c361987ad
 cleanup:
   - /bin
   - /lib/python3.13/site-packages/PySide6/*.pyi
@@ -41,13 +41,6 @@ cleanup:
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6Designer.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6DesignerComponents.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6Help.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6LabsAnimation.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6LabsFolderListModel.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6LabsPlatform.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6LabsQmlModels.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6LabsSettings.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6LabsSharedImage.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6LabsWavefrontMesh.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6PrintSupport.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QmlLocalStorage.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QmlNetwork.so.6
