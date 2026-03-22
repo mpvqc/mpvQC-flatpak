@@ -128,6 +128,7 @@ modules:
   - name: rubberband
     buildsystem: meson
     cleanup:
+      - /bin
       - /include
       - /lib/pkgconfig
     sources:
@@ -200,6 +201,8 @@ modules:
   - name: vapoursynth
     config-opts:
       - --with-python-prefix=${FLATPAK_DEST}
+    cleanup:
+      - /bin
     sources:
       - type: archive
         url: https://github.com/vapoursynth/vapoursynth/archive/72.tar.gz
@@ -246,6 +249,7 @@ modules:
       - -Dzimg=enabled
       - -Db_lto=true
     cleanup:
+      - /bin
       - /include
       - /lib/pkgconfig
     sources:
