@@ -46,6 +46,9 @@ modules:
   # Most are just copied. ffmpeg and mpv are tweaked for mpvQC specifically
   - name: luajit
     no-autogen: true
+    build-options:
+      cflags: -O2 -fno-lto
+      cxxflags: -O2 -fno-lto
     cleanup:
       - /bin
       - /include
@@ -353,8 +356,8 @@ modules:
       - ln -s /app/bin/launch.sh /app/bin/mpvQC
 
       # Install licenses shipped with the mpvQC source tree
-      - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
-      - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
+      - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
       # Build from local source (swap for type: git when preparing a release)
       - type: dir
