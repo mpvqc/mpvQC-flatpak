@@ -249,14 +249,14 @@ modules:
     config-opts:
       - -Dbuild-date=false
       - -Dcdda=disabled
-      - -Dcplayer=false        # only need the library, not the player binary
+      - -Dcplayer=false # only need the library, not the player binary
       - -Ddvbin=disabled
       - -Ddvdnav=disabled
-      - -Dlibmpv=true          # default since 0.41.0, kept for explicitness
+      - -Dlibmpv=true # default since 0.41.0, kept for explicitness
 
       # Fail-fast for libraries we build ourselves (all default: auto)
-      - -Djavascript=enabled   # mujs
-      - -Dlua=enabled          # luajit
+      - -Djavascript=enabled # mujs
+      - -Dlua=enabled # luajit
       - -Drubberband=enabled
       - -Duchardet=enabled
       - -Dvapoursynth=enabled
