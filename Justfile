@@ -31,8 +31,8 @@ lint:
 @generate-flatpak-dependencies:
     uv run flatpak-pypi-updater.py \
     	--dependency inject::none:any \
-    	--dependency PySide6-Essentials==6.10.2::manylinux:x86_64 \
-    	--dependency shiboken6==6.10.2::manylinux:x86_64 \
+    	--dependency PySide6-Essentials==6.11.0::manylinux:x86_64 \
+    	--dependency shiboken6==6.11.0::manylinux:x86_64 \
     	--dependency MarkupSafe==3.0.3::cp312:manylinux:x86_64 \
     	--dependency Jinja2::none:any \
     	--dependency mpv::none:any \
