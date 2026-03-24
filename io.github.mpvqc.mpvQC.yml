@@ -6,11 +6,10 @@ command: mpvQC
 
 finish-args:
   - --device=dri
-  # Home filesystem access required for:
-  # - Opening video files from user-specified locations
-  # - Saving QC reports and exports to user-chosen directories
-  # - Loading subtitle files and project documents
-  - --filesystem=home
+  - --filesystem=xdg-desktop # open/save files on the Desktop
+  - --filesystem=xdg-download # open downloaded video and subtitle files
+  - --filesystem=xdg-videos # open video files
+  - --filesystem=xdg-documents # save QC reports, subtitles, and backups
   - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
