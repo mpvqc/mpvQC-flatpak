@@ -337,6 +337,8 @@ modules:
         MPVQC_COMPILE_QML: "true"
         UV_PYTHON: /usr/bin/python3
         UV_NO_PROJECT: "1"
+        UV_NO_SYNC: "1"
+        UV_OFFLINE: "1"
     build-commands:
       # Build using the same recipe as the CI `build_linux` job.
       - just build-release
@@ -358,15 +360,6 @@ modules:
       - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
       - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
-      # Build from local source (swap for type: git when preparing a release)
-      - type: dir
-        path: /home/elias/PycharmProjects/mpvQC
-      # - type: git
-      #   url: https://github.com/mpvqc/mpvQC.git
-      #   tag: 0.9.0-beta4
-      #   commit: <sha>
-
-      # Flatpak-specific files not part of the mpvQC source tree
       - type: file
         path: launch.sh
       - type: file
@@ -375,3 +368,12 @@ modules:
         path: io.github.mpvqc.mpvQC.metainfo.xml
       - type: file
         path: io.github.mpvqc.mpvQC.svg
+
+      # - type: dir
+      #   path: /home/elias/PycharmProjects/mpvQC
+
+      - type: git
+        url: https://github.com/mpvqc/mpvQC.git
+        # tag: 0.9.0-beta4
+        commit: 62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2
+        disable-shallow-clone: true # required for stamping version info
