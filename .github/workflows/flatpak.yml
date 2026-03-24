@@ -26,11 +26,13 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-      - uses: andyholmes/flatter@main
+      - name: "Build"
+        uses: andyholmes/flatter@main
         with:
           files: io.github.mpvqc.mpvQC.yml
           gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
-          upload-pages-artifact: true
+          upload-bundles: true
+          upload-pages-artifact: ${{ github.ref == 'refs/heads/main' }}
           upload-pages-includes: |
             mpvQC.flatpakref
 

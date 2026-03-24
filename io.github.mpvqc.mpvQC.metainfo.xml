@@ -5,8 +5,7 @@
     <launchable type="desktop-id">io.github.mpvqc.mpvQC.desktop</launchable>
 
     <name>mpvQC</name>
-    <summary>A libmpv-based app for quick, easy video QC reporting
-    </summary>
+    <summary>A libmpv-based app for quick, easy video QC reporting</summary>
 
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0-or-later</project_license>
@@ -25,13 +24,13 @@
     <screenshots>
         <screenshot type="default">
             <image type="source">
-                https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/mpvQC-dark.png
+                https://raw.githubusercontent.com/mpvqc/mpvQC/62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2/.github/screenshots/mpvQC-dark.png
             </image>
             <caption>Main window using dark mode</caption>
         </screenshot>
         <screenshot>
             <image type="source">
-                https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/mpvQC-light.png
+                https://raw.githubusercontent.com/mpvqc/mpvQC/62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2/.github/screenshots/mpvQC-light.png
             </image>
             <caption>Main window using light mode</caption>
         </screenshot>
@@ -169,15 +168,13 @@
         </release>
     </releases>
 
-    <project_group>mpvQC</project_group>
     <content_rating type="oars-1.1"/>
 
     <url type="homepage">https://mpvqc.github.io</url>
     <url type="bugtracker">https://github.com/mpvqc/mpvQC/issues</url>
+    <url type="vcs-browser">https://github.com/mpvqc/mpvQC</url>
 
     <developer id="io.github.mpvqc">
         <name>mpvQC developers</name>
     </developer>
-
-    <update_contact>elias.mr1@gmail.com</update_contact>
 </component>

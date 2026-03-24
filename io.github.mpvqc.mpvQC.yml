@@ -6,15 +6,13 @@ command: mpvQC
 
 finish-args:
   - --device=dri
-  # Home filesystem access required for:
-  # - Opening video files from user-specified locations
-  # - Saving QC reports and exports to user-chosen directories
-  # - Loading subtitle files and project documents
-  - --filesystem=home
+  - --filesystem=xdg-desktop # open/save files on the Desktop
+  - --filesystem=xdg-download # open downloaded video and subtitle files
+  - --filesystem=xdg-videos # open video files
+  - --filesystem=xdg-documents # save QC reports, subtitles, and backups
   - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
-  - --socket=pulseaudio
   - --filesystem=xdg-run/pipewire-0:ro
 
 #add-extensions:
@@ -42,11 +40,13 @@ cleanup:
 modules:
   - io.github.mpvqc.mpvQC.pypi.yml
 
+  # Rely on upstream project https://github.com/flathub/io.mpv.Mpv for building dependencies.
+  # Most are just copied. ffmpeg and mpv are tweaked for mpvQC specifically
   - name: luajit
+    no-autogen: true
     build-options:
       cflags: -O2 -fno-lto
       cxxflags: -O2 -fno-lto
-    no-autogen: true
     cleanup:
       - /bin
       - /include
@@ -56,13 +56,14 @@ modules:
       - type: git
         url: https://github.com/LuaJIT/LuaJIT.git
         disable-shallow-clone: true
-        commit: 7152e15489d2077cd299ee23e3d51a4c599ab14f
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
-          commit-query: .commit.sha
-          version-query: .commit.sha
-          timestamp-query: .commit.commit.committer.date
+        # LuaJIT v2.1 is a rolling branch with no tags; update the commit manually
+        commit: 659a61693aa3b87661864ad0f12eee14c865cd7f
+        # x-checker-data:
+        #   type: json
+        #   url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
+        #   commit-query: .commit.sha
+        #   version-query: .commit.sha
+        #   timestamp-query: .commit.commit.committer.date
       - type: shell
         commands:
           - sed -i 's|/usr/local|/app|' ./Makefile
@@ -128,6 +129,7 @@ modules:
   - name: rubberband
     buildsystem: meson
     cleanup:
+      - /bin
       - /include
       - /lib/pkgconfig
     sources:
@@ -153,14 +155,23 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: git
-        url: https://github.com/ccxvii/mujs.git
-        tag: 1.3.6
-        commit: cc569c5fa9a7a2498177693b5617605c2ff5b260
-        # failing build for 1.3.7
-        #x-checker-data:
-        #  type: git
-        #  url: https://api.github.com/repos/ccxvii/mujs/tags
-        #  tag-pattern: ^([\d.]+)$
+        url: https://codeberg.org/ccxvii/mujs.git
+        tag: 1.3.8
+        commit: 307f18c4216420f2f56e22d8e7040baa39a6304a
+        x-checker-data:
+          type: json
+          url: https://codeberg.org/api/v1/repos/ccxvii/mujs/tags
+          tag-query: .[0].name
+          version-query: $tag
+          timestamp-query: .[0].commit.created
+      # mujs 1.3.8 tries to curl these at build time; provide them as sources
+      # so Make's file targets find them already present and skip the download.
+      - type: file
+        url: https://www.unicode.org/Public/16.0.0/ucd/UnicodeData.txt
+        sha256: ff58e5823bd095166564a006e47d111130813dcf8bf234ef79fa51a870edb48f
+      - type: file
+        url: https://www.unicode.org/Public/16.0.0/ucd/SpecialCasing.txt
+        sha256: 8d5de354eef79f2395a54c9c7dcebbaf3d30fc962d0f85611ea97aa973a0c451
 
   - name: ffmpeg
     cleanup:
@@ -191,8 +202,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
-        tag: n8.0.1
-        commit: 894da5ca7d742e4429ffb2af534fcda0103ef593
+        tag: n8.1
+        commit: 9047fa1b084f76b1b4d065af2d743df1b40dfb56
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -202,13 +213,16 @@ modules:
       - --with-python-prefix=${FLATPAK_DEST}
     sources:
       - type: archive
-        url: https://github.com/vapoursynth/vapoursynth/archive/72.tar.gz
-        sha256: f8fcc5e2e9d2195454310e3356ea13e5334125891e452cc6543e985f28cacd22
+        # without the dest-filename, flatpak-builder throws an "Unknown archive format" error
+        dest-filename: vapoursynth.tar.gz
+        url: https://api.github.com/repos/vapoursynth/vapoursynth/tarball/R73
+        sha256: 9c02a68b29eb446b2d0b1be3d831420fdc2bd703aacccc468faef9f94e3bf85f
         x-checker-data:
-          type: anitya
-          project-id: 15982
-          stable-only: true
-          url-template: https://github.com/vapoursynth/vapoursynth/archive/$version.tar.gz
+          type: json
+          url: https://api.github.com/repos/vapoursynth/vapoursynth/releases/latest
+          version-query: .name
+          timestamp-query: .published_at
+          url-query: .tarball_url
 
   - name: libplacebo
     buildsystem: meson
@@ -223,44 +237,47 @@ modules:
     sources:
       - type: git
         url: https://github.com/haasn/libplacebo.git
-        #        tag: v7.351.0
-        commit: 06992a53fafc1549843c8b36751e166cfe3a4079
-        # x-checker-data:
-        #   type: git
-        #   tag-pattern: ^v([\d.]+)$
+        tag: v7.360.1
+        commit: cee9b076f2c63104ccfd497fa79c39a867293ec4
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.]+)$
 
   - name: mpv
     buildsystem: meson
     config-opts:
       - -Dbuild-date=false
       - -Dcdda=disabled
+      - -Dcplayer=false # only need the library, not the player binary
       - -Ddvbin=disabled
       - -Ddvdnav=disabled
-      - -Dlibarchive=enabled
-      - -Dlibmpv=true
-      - -Dmanpage-build=disabled
+      - -Dlibmpv=true # default since 0.41.0, kept for explicitness
+
+      # Fail-fast for libraries we build ourselves (all default: auto)
+      - -Djavascript=enabled # mujs
+      - -Dlua=enabled # luajit
       - -Drubberband=enabled
-      - -Dsdl2=disabled
+      - -Duchardet=enabled
       - -Dvapoursynth=enabled
-      - -Dvulkan=enabled
       - -Dzimg=enabled
+
+      # Meson build options
       - -Db_lto=true
+      - -Dwerror=false
+      - -Dmanpage-build=disabled
     cleanup:
+      - /bin
       - /include
       - /lib/pkgconfig
     sources:
       - type: git
         url: https://github.com/mpv-player/mpv.git
-        tag: v0.40.0
-        commit: e48ac7ce08462f5e33af6ef9deeac6fa87eef01e
+        tag: v0.41.0
+        commit: 41f6a645068483470267271e1d09966ca3b9f413
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-
-      # required to build against ffmpeg 8.0
-      # https://github.com/mpv-player/mpv/commit/26b29fba02a2782f68e2906f837d21201fc6f1b9
-      - type: patch
-        path: patches/demux_mkv-fix-compilation-after-deprecated-definitio.patch
+          is-main-source: true
 
   # https://github.com/flathub/io.qt.qtwebengine.BaseApp/tree/branch/6.7/krb5
   - name: krb5
@@ -289,31 +306,60 @@ modules:
       - type: file
         path: krb5.conf
 
-  - name: mpvQC
+  - name: just
     buildsystem: simple
     build-commands:
+      - install -Dm755 just /app/bin/just
+    cleanup:
+      - /bin/just
+    sources:
+      - type: archive
+        url: https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-unknown-linux-musl.tar.gz
+        sha256: 3cb931ae25860f261ee373f32ede3b772ac91f14f588e4071576d3ffcf1a16fd
+        strip-components: 0
+
+  - name: uv
+    buildsystem: simple
+    build-commands:
+      - install -Dm755 uv /app/bin/uv
+    cleanup:
+      - /bin/uv
+    sources:
+      - type: archive
+        url: https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-unknown-linux-musl.tar.gz
+        sha256: adccf40b5d1939a5e0093081ec2307ea24235adf7c2d96b122c561fa37711c46
+        strip-components: 1
+
+  - name: mpvQC
+    buildsystem: simple
+    build-options:
+      env:
+        MPVQC_COMPILE_QML: "true"
+        UV_PYTHON: /usr/bin/python3
+        UV_NO_PROJECT: "1"
+        UV_NO_SYNC: "1"
+        UV_OFFLINE: "1"
+    build-commands:
+      # Build using the same recipe as the CI `build_linux` job.
+      - just build-release
+
+      # Install application files
       - mkdir -p /app/my-app
-      - cp -r mpvqc /app/my-app
-      - install -D main.py /app/my-app
-      - install -D rc_project.py /app/my-app
+      - cp -r build/release/mpvqc /app/my-app
+      - install -D build/release/main.py /app/my-app/main.py
+      - install -D build/release/rc_project.py /app/my-app/rc_project.py
+
+      # Install Flatpak integration files
       - install -Dm644 io.github.mpvqc.mpvQC.svg /app/share/icons/hicolor/scalable/apps/io.github.mpvqc.mpvQC.svg
       - install -Dm644 io.github.mpvqc.mpvQC.desktop /app/share/applications/io.github.mpvqc.mpvQC.desktop
       - install -Dm644 io.github.mpvqc.mpvQC.metainfo.xml -t /app/share/metainfo
       - install -Dm755 launch.sh /app/bin/launch.sh
       - ln -s /app/bin/launch.sh /app/bin/mpvQC
 
-      # Copy all licenses
-      - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
-      - cp Apache-2.0.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
-      - cp BSD-3-Clause.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
-      - cp GPL-3.0-or-later.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
-      - cp LGPL-3.0.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
-      - cp MIT.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
-      - cp OFL-1.1.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
-      - cp PSF-2.0.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID
+      # Install licenses shipped with the mpvQC source tree
+      - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
+      - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
-      - type: dir
-        path: dependency-licenses
       - type: file
         path: launch.sh
       - type: file
@@ -323,11 +369,11 @@ modules:
       - type: file
         path: io.github.mpvqc.mpvQC.svg
 
-      - type: archive
-        url: https://github.com/mpvqc/mpvQC/releases/download/0.9.0-beta3/release-build-linux.zip
-        sha256: b907f62b7957229a5fb7c0e2ae64acd8b827e0df81571db19a7275b64a8dea5a
-        strip-components: 0
+      # - type: dir
+      #   path: /home/elias/PycharmProjects/mpvQC
 
-        # local testing
-        # - type: dir
-        #  path: /home/elias/PycharmProjects/mpvQC/build/release
+      - type: git
+        url: https://github.com/mpvqc/mpvQC.git
+        # tag: 0.9.0-beta4
+        commit: 62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2
+        disable-shallow-clone: true # required for stamping version info
