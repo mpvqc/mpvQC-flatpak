@@ -24,13 +24,13 @@
     <screenshots>
         <screenshot type="default">
             <image type="source">
-                https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/mpvQC-dark.png
+                https://raw.githubusercontent.com/mpvqc/mpvQC/62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2/.github/screenshots/mpvQC-dark.png
             </image>
             <caption>Main window using dark mode</caption>
         </screenshot>
         <screenshot>
             <image type="source">
-                https://raw.githubusercontent.com/mpvqc/mpvQC-flatpak/refs/heads/main/screenshots/mpvQC-light.png
+                https://raw.githubusercontent.com/mpvqc/mpvQC/62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2/.github/screenshots/mpvQC-light.png
             </image>
             <caption>Main window using light mode</caption>
         </screenshot>
