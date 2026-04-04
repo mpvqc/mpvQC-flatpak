@@ -306,30 +306,6 @@ modules:
       - type: file
         path: krb5.conf
 
-  - name: just
-    buildsystem: simple
-    build-commands:
-      - install -Dm755 just /app/bin/just
-    cleanup:
-      - /bin/just
-    sources:
-      - type: archive
-        url: https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-unknown-linux-musl.tar.gz
-        sha256: 3cb931ae25860f261ee373f32ede3b772ac91f14f588e4071576d3ffcf1a16fd
-        strip-components: 0
-
-  - name: uv
-    buildsystem: simple
-    build-commands:
-      - install -Dm755 uv /app/bin/uv
-    cleanup:
-      - /bin/uv
-    sources:
-      - type: archive
-        url: https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-unknown-linux-musl.tar.gz
-        sha256: adccf40b5d1939a5e0093081ec2307ea24235adf7c2d96b122c561fa37711c46
-        strip-components: 1
-
   - name: mpvQC
     buildsystem: simple
     build-options:
@@ -341,7 +317,7 @@ modules:
         UV_OFFLINE: "1"
     build-commands:
       # Build using the same recipe as the CI `build_linux` job.
-      - just build-release
+      - PATH=$PWD/build-tools:$PATH just build-release
 
       # Install application files
       - mkdir -p /app/my-app
@@ -360,6 +336,29 @@ modules:
       - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
       - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
+      - type: archive
+        url: https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-unknown-linux-musl.tar.gz
+        sha256: 3cb931ae25860f261ee373f32ede3b772ac91f14f588e4071576d3ffcf1a16fd
+        strip-components: 0
+        dest: build-tools
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/casey/just/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
+          timestamp-query: .published_at
+      - type: archive
+        url: https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-unknown-linux-musl.tar.gz
+        sha256: adccf40b5d1939a5e0093081ec2307ea24235adf7c2d96b122c561fa37711c46
+        strip-components: 1
+        dest: build-tools
+        x-checker-data:
+          type: json
+          url: https://api.github.com/repos/astral-sh/uv/releases/latest
+          version-query: .tag_name
+          url-query: .assets[] | select(.name == "uv-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
+          timestamp-query: .published_at
+
       - type: file
         path: launch.sh
       - type: file
