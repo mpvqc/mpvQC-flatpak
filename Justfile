@@ -58,6 +58,11 @@ lint:
 @lint-flatpak-repo:
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
 
+# Run x-checker-data
+[group('flatpak-update')]
+@run-x-checker-data:
+    docker run --rm -v $PWD:/run/app ghcr.io/flathub/flatpak-external-data-checker:latest /run/app/{{ MANIFEST_FILE }}
+
 # Force clean environment
 [group('flatpak')]
 clean-flatpak-resources:
