@@ -296,8 +296,8 @@ modules:
       - install -Dm644 ../krb5.conf -t ${FLATPAK_DEST}/etc/
     sources:
       - type: archive
-        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.1.tar.gz
-        sha256: 1a8832b8cad923ebbf1394f67e2efcf41e3a49f460285a66e35adec8fa0053af
+        url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
+        sha256: 3243ffbc8ea4d4ac22ddc7dd2a1dc54c57874c40648b60ff97009763554eaf13
         x-checker-data:
           type: html
           url: https://kerberos.org/dist/
@@ -337,8 +337,8 @@ modules:
       - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
       - type: archive
-        url: https://github.com/casey/just/releases/download/1.47.1/just-1.47.1-x86_64-unknown-linux-musl.tar.gz
-        sha256: 3cb931ae25860f261ee373f32ede3b772ac91f14f588e4071576d3ffcf1a16fd
+        url: https://github.com/casey/just/releases/download/1.48.1/just-1.48.1-x86_64-unknown-linux-musl.tar.gz
+        sha256: 9293e553ce401d1b524bf4e104918f72f268e3f9c6827e0055fe98d84a1b2522
         strip-components: 0
         dest: build-tools
         x-checker-data:
@@ -348,8 +348,8 @@ modules:
           url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
           timestamp-query: .published_at
       - type: archive
-        url: https://github.com/astral-sh/uv/releases/download/0.10.12/uv-x86_64-unknown-linux-musl.tar.gz
-        sha256: adccf40b5d1939a5e0093081ec2307ea24235adf7c2d96b122c561fa37711c46
+        url: https://github.com/astral-sh/uv/releases/download/0.11.3/uv-x86_64-unknown-linux-musl.tar.gz
+        sha256: 8b40cf16b849634b81a530a3d0a0bcae5f24996ef9ae782976fd69b6266d3b8e
         strip-components: 1
         dest: build-tools
         x-checker-data:
