@@ -374,5 +374,5 @@ modules:
       - type: git
         url: https://github.com/mpvqc/mpvQC.git
         # tag: 0.9.0-beta4
-        commit: 62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2
+        commit: 6d94d2d0568b263bf5543656a4d5a9e4fb04997e
         disable-shallow-clone: true # required for stamping version info
