@@ -16,20 +16,20 @@ alias fmt := format
 
 # Initialize repository
 init:
-    uv sync --group dev
+    uv sync --project tools --group dev
 
 # Format code
 format:
-    uv run prek run --all-files
+    uv run --project tools prek --config=.config/prek.toml run --all-files
 
 # Lint Python files (type checker)
 lint:
-    uv run pyrefly check flatpak-pypi-updater.py
+    uv run --project tools pyrefly check tools/flatpak-pypi-updater.py
 
 # Regenerate Python dependency file
 [group('support')]
 @generate-flatpak-dependencies:
-    uv run flatpak-pypi-updater.py \
+    uv run --project tools tools/flatpak-pypi-updater.py \
     	--dependency inject::none:any \
     	--dependency PySide6-Essentials==6.11.0::manylinux:x86_64 \
     	--dependency shiboken6==6.11.0::manylinux:x86_64 \
