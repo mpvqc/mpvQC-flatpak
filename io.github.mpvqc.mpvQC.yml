@@ -7,20 +7,13 @@ command: mpvQC
 finish-args:
   - --device=dri
   - --filesystem=xdg-desktop # open/save files on the Desktop
-  - --filesystem=xdg-download # open downloaded video and subtitle files
-  - --filesystem=xdg-videos # open video files
-  - --filesystem=xdg-documents # save QC reports, subtitles, and backups
+  - --filesystem=xdg-download # open/save files in the Downloads folder
+  - --filesystem=xdg-videos # open/save files in the Videos folder
+  - --filesystem=xdg-documents # open/save files in the Documents folder
   - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
   - --filesystem=xdg-run/pipewire-0:ro
-
-#add-extensions:
-#  org.freedesktop.Platform.codecs-extra:
-#    directory: lib/codecs
-#    version: '25.08'
-#    add-ld-path: lib
-#    autodelete: false
 
 build-options:
   cflags: -O3 -march=x86-64-v2
@@ -373,6 +366,6 @@ modules:
 
       - type: git
         url: https://github.com/mpvqc/mpvQC.git
-        # tag: 0.9.0-beta4
-        commit: 6d94d2d0568b263bf5543656a4d5a9e4fb04997e
+        # tag: 1.0.0
+        commit: b72025e9cb84eac9bc493984649de2c86e02e03f
         disable-shallow-clone: true # required for stamping version info
