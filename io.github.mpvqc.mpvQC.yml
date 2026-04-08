@@ -310,11 +310,11 @@ modules:
     buildsystem: simple
     build-options:
       env:
-        MPVQC_COMPILE_QML: "true"
+        MPVQC_COMPILE_QML: 'true'
         UV_PYTHON: /usr/bin/python3
-        UV_NO_PROJECT: "1"
-        UV_NO_SYNC: "1"
-        UV_OFFLINE: "1"
+        UV_NO_PROJECT: '1'
+        UV_NO_SYNC: '1'
+        UV_OFFLINE: '1'
     build-commands:
       # Build using the same recipe as the CI `build_linux` job.
       - PATH=$PWD/build-tools:$PATH just build-release
@@ -337,8 +337,8 @@ modules:
       - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
       - type: archive
-        url: https://github.com/casey/just/releases/download/1.48.1/just-1.48.1-x86_64-unknown-linux-musl.tar.gz
-        sha256: 9293e553ce401d1b524bf4e104918f72f268e3f9c6827e0055fe98d84a1b2522
+        url: https://github.com/casey/just/releases/download/1.49.0/just-1.49.0-x86_64-unknown-linux-musl.tar.gz
+        sha256: 05eb2f068b641b06e5b318796c2e27d4dcca608e65b34329a08c1b9f582611bd
         strip-components: 0
         dest: build-tools
         x-checker-data:
@@ -348,8 +348,8 @@ modules:
           url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
           timestamp-query: .published_at
       - type: archive
-        url: https://github.com/astral-sh/uv/releases/download/0.11.3/uv-x86_64-unknown-linux-musl.tar.gz
-        sha256: 8b40cf16b849634b81a530a3d0a0bcae5f24996ef9ae782976fd69b6266d3b8e
+        url: https://github.com/astral-sh/uv/releases/download/0.11.4/uv-x86_64-unknown-linux-musl.tar.gz
+        sha256: 36ce1c5d8997db9b6a24d0f41646d5509b6d1d8b9448c7325f8248a6ea5d4b00
         strip-components: 1
         dest: build-tools
         x-checker-data:
