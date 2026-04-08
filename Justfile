@@ -20,11 +20,11 @@ init:
 
 # Format code
 format:
-    uvx prek@0.3.5 run --all-files
+    uv run prek run --all-files
 
 # Lint Python files (type checker)
 lint:
-    uvx pyrefly@0.55.0 check flatpak-pypi-updater.py
+    uv run pyrefly check flatpak-pypi-updater.py
 
 # Regenerate Python dependency file
 [group('support')]

@@ -5,11 +5,14 @@ description = "Add your description here"
 readme = "README.MD"
 requires-python = ">=3.13"
 dependencies = [
-    "PyYaml>=6.0.2",
+    "PyYaml>=6.0.3",
 ]
 
 [dependency-groups]
-dev = []
+dev = [
+    "prek>=0.3.8",
+    "pyrefly>=0.60.0",
+]
 
 [tool.ruff]
 line-length = 120
