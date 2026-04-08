@@ -58,17 +58,29 @@ lint:
 @lint-flatpak-repo:
     flatpak run --command=flatpak-builder-lint org.flatpak.Builder repo repo
 
-# Run x-checker-data
+# Check for dependency updates (read-only)
 [group('flatpak-update')]
-@run-x-checker-data:
-    docker run --rm -v $PWD:/run/app ghcr.io/flathub/flatpak-external-data-checker:latest /run/app/{{ MANIFEST_FILE }}
+@run-x-checker-check:
+    docker run --rm \
+        -v $PWD:/run/app \
+        ghcr.io/flathub/flatpak-external-data-checker:latest \
+        /run/app/{{ MANIFEST_FILE }}
+
+# Sync dependency updates (update manifest file)
+[group('flatpak-update')]
+@run-x-checker-update:
+    docker run --rm \
+        -v $PWD:/run/app \
+        ghcr.io/flathub/flatpak-external-data-checker:latest \
+        --update --edit-only \
+        /run/app/{{ MANIFEST_FILE }}
 
 # Force clean environment
 [group('flatpak')]
 clean-flatpak-resources:
-	rm -rf {{ BUILD_DIR }}
-	rm -rf .flatpak-builder
-	rm -rf repo
+    rm -rf {{ BUILD_DIR }}
+    rm -rf .flatpak-builder
+    rm -rf repo
 
 # (1) Build flatpak
 [group('flatpak')]
