@@ -91,3 +91,8 @@ install-flatpak:
 [group('flatpak')]
 run-flatpak:
     flatpak run {{ APP_ID }}
+
+# (4) Uninstall flatpak
+[group('flatpak')]
+uninstall-flatpak:
+    flatpak uninstall --user {{ APP_ID }}
