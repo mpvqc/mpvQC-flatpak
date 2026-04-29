@@ -317,10 +317,10 @@ modules:
       - PATH=$PWD/build-tools:$PATH just build-release
 
       # Install application files
-      - mkdir -p /app/my-app
-      - cp -r build/release/mpvqc /app/my-app
-      - install -D build/release/main.py /app/my-app/main.py
-      - install -D build/release/rc_project.py /app/my-app/rc_project.py
+      - mkdir -p /app/share/$FLATPAK_ID
+      - cp -r build/release/mpvqc /app/share/$FLATPAK_ID
+      - install -D build/release/main.py /app/share/$FLATPAK_ID/main.py
+      - install -D build/release/rc_project.py /app/share/$FLATPAK_ID/rc_project.py
 
       # Install Flatpak integration files
       - install -Dm644 io.github.mpvqc.mpvQC.svg /app/share/icons/hicolor/scalable/apps/io.github.mpvqc.mpvQC.svg

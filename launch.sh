@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-cd "/app/my-app" || exit
-python "/app/my-app/main.py" "$@"
+cd "/app/share/io.github.mpvqc.mpvQC" || exit
+python "/app/share/io.github.mpvqc.mpvQC/main.py" "$@"
