@@ -6,13 +6,14 @@ command: mpvQC
 
 finish-args:
   - --device=dri
-  - --filesystem=xdg-desktop # open/save files on the Desktop
-  - --filesystem=xdg-download # open/save files in the Downloads folder
-  - --filesystem=xdg-videos # open/save files in the Videos folder
-  - --filesystem=xdg-documents # open/save files in the Documents folder
   - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
+
+  # QC documents reference video files by path, and imported subtitles may
+  # reference videos in turn. References can chain across files in arbitrary
+  # user directories, which the document portal cannot grant access to.
+  - --filesystem=home
   - --filesystem=xdg-run/pipewire-0:ro
 
 build-options:
