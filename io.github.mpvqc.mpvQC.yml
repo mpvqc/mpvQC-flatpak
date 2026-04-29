@@ -309,6 +309,7 @@ modules:
         UV_NO_SYNC: '1'
         UV_OFFLINE: '1'
     build-commands:
+      - rm .env
       # Build using the same recipe as the CI `build_linux` job.
       - PATH=$PWD/build-tools:$PATH just build-release
 
