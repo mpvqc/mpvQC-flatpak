@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/flatpak/flatpak-builder/main/data/flatpak-manifest.schema.json
+
 id: io.github.mpvqc.mpvQC
 runtime: org.freedesktop.Platform
 runtime-version: '25.08'
