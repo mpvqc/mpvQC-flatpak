@@ -330,8 +330,8 @@ modules:
       - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
       - type: archive
-        url: https://github.com/casey/just/releases/download/1.49.0/just-1.49.0-x86_64-unknown-linux-musl.tar.gz
-        sha256: 05eb2f068b641b06e5b318796c2e27d4dcca608e65b34329a08c1b9f582611bd
+        url: https://github.com/casey/just/releases/download/1.50.0/just-1.50.0-x86_64-unknown-linux-musl.tar.gz
+        sha256: 27e011cd6328fadd632e59233d2cf5f18460b8a8c4269acd324c1a8669f34db0
         strip-components: 0
         dest: build-tools
         x-checker-data:
@@ -341,8 +341,8 @@ modules:
           url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
           timestamp-query: .published_at
       - type: archive
-        url: https://github.com/astral-sh/uv/releases/download/0.11.4/uv-x86_64-unknown-linux-musl.tar.gz
-        sha256: 36ce1c5d8997db9b6a24d0f41646d5509b6d1d8b9448c7325f8248a6ea5d4b00
+        url: https://github.com/astral-sh/uv/releases/download/0.11.8/uv-x86_64-unknown-linux-musl.tar.gz
+        sha256: de82507d12e31cfc86c1c776238f7c248e48e40d996dedc812d64fdd31c6ed12
         strip-components: 1
         dest: build-tools
         x-checker-data:
