@@ -198,8 +198,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
-        tag: n8.1
-        commit: 9047fa1b084f76b1b4d065af2d743df1b40dfb56
+        tag: n8.1.1
+        commit: 239f2c733de417201d7ad3b3b8b0d9b63285b2b1
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -334,8 +334,8 @@ modules:
       - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
       - type: archive
-        url: https://github.com/casey/just/releases/download/1.50.0/just-1.50.0-x86_64-unknown-linux-musl.tar.gz
-        sha256: 27e011cd6328fadd632e59233d2cf5f18460b8a8c4269acd324c1a8669f34db0
+        url: https://github.com/casey/just/releases/download/1.51.0/just-1.51.0-x86_64-unknown-linux-musl.tar.gz
+        sha256: c8f085ca3e885723c341d06243fc291b5abfdc8bbe3b2c076b117de490387b59
         strip-components: 0
         dest: build-tools
         x-checker-data:
@@ -345,8 +345,8 @@ modules:
           url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
           timestamp-query: .published_at
       - type: archive
-        url: https://github.com/astral-sh/uv/releases/download/0.11.8/uv-x86_64-unknown-linux-musl.tar.gz
-        sha256: de82507d12e31cfc86c1c776238f7c248e48e40d996dedc812d64fdd31c6ed12
+        url: https://github.com/astral-sh/uv/releases/download/0.11.17/uv-x86_64-unknown-linux-musl.tar.gz
+        sha256: 4231a429d4e0f7c1937d8916658c08a7706cd7872afebeb87203a18c2e0dc28e
         strip-components: 1
         dest: build-tools
         x-checker-data:
