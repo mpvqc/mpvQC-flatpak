@@ -24,19 +24,65 @@
     <screenshots>
         <screenshot type="default">
             <image type="source">
-                https://raw.githubusercontent.com/mpvqc/mpvQC/62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2/.github/screenshots/mpvQC-dark.png
+                https://raw.githubusercontent.com/mpvqc/mpvQC/2f7bbff0cfbf93fbb3eea96febaad44b975cdfd2/.github/screenshots/mpvQC-dark.webp
             </image>
             <caption>Main window using dark mode</caption>
         </screenshot>
         <screenshot>
             <image type="source">
-                https://raw.githubusercontent.com/mpvqc/mpvQC/62f3c1bf1b9b3ebbb698f39bfb4064cbaaf253a2/.github/screenshots/mpvQC-light.png
+                https://raw.githubusercontent.com/mpvqc/mpvQC/2f7bbff0cfbf93fbb3eea96febaad44b975cdfd2/.github/screenshots/mpvQC-light.webp
             </image>
             <caption>Main window using light mode</caption>
         </screenshot>
     </screenshots>
 
     <releases>
+        <release date="2026-06-01" version="0.9.0-beta4">
+            <description>
+                <p>Please report any bugs or issues to help improve future releases 🚀</p>
+                <p>Reworked Import Flow</p>
+                <ul>
+                    <li>Imports now run through a single stepped wizard that shows only the steps that apply: any files
+                        that couldn't be read, adding to your current comments or starting fresh, choosing the video to
+                        load, and choosing the subtitles to load
+                    </li>
+                    <li>It replaces the old confirmation dialog and the separate "document not compatible" message</li>
+                    <li>Note: mpvQC no longer tries to be smart about save locations, so saving an imported document
+                        always asks for a destination
+                    </li>
+                </ul>
+                <p>Comments</p>
+                <ul>
+                    <li>Editing a cell now uses a double-click; a single click only selects the row</li>
+                    <li>Moving and deleting comments is now animated</li>
+                    <li>Undo/redo scrolls to the affected row first so you can see what's about to change</li>
+                </ul>
+                <p>Improvements and Fixes</p>
+                <ul>
+                    <li>New "Open App Data Folder…" entry in the Help menu to reach your config, backups, and
+                        screenshots
+                    </li>
+                    <li>Several small dialog refinements, including new buttons and subtle animations</li>
+                    <li>Fixed crashes on exit, including when quitting shortly after loading a video</li>
+                </ul>
+                <p>Windows: Platform Integration Quirks and Fixes</p>
+                <ul>
+                    <li>Smoothed out a number of Windows-specific quirks around focus, menus, window restore, and the
+                        taskbar
+                    </li>
+                </ul>
+                <p>Linux: Hardware Video Decoding</p>
+                <ul>
+                    <li>Enabled hardware decoding (hwdec=auto) on Linux. Depending on the codec and your GPU, decoding
+                        can now run on the GPU. It falls back to software automatically when a codec or device isn't
+                        supported.
+                    </li>
+                    <li>Note: If you've customized your mpv.conf, enable this via Options → Edit mpv.conf by restoring
+                        the defaults (or by adding hwdec=auto yourself)
+                    </li>
+                </ul>
+            </description>
+        </release>
         <release date="2025-12-13" version="0.9.0-beta3">
             <description>
                 <p>Please report any bugs or issues to help improve future releases.</p>
