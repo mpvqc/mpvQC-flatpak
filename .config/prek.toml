@@ -10,26 +10,8 @@ hooks = [
 ]
 
 [[repos]]
-repo = "https://github.com/biomejs/pre-commit"
-rev = "v2.4.10"
-hooks = [
-    {
-        id = "biome-check",
-        name = "format json",
-        files = '\.(jsonc?)$',
-        args = [
-            "--bracket-spacing=true",
-            "--indent-style=space",
-            "--indent-width=4",
-            "--line-ending=lf",
-            "--line-width=120",
-        ]
-    },
-]
-
-[[repos]]
 repo = "https://github.com/tombi-toml/tombi-pre-commit"
-rev = "v0.9.16"
+rev = "v1.1.2"
 hooks = [
     {
         id = "tombi-format",
@@ -70,20 +52,5 @@ hooks = [
         additional_dependencies = [
             "mdformat-gfm",
         ]
-    },
-]
-
-[[repos]]
-repo = "https://github.com/astral-sh/ruff-pre-commit"
-rev = "v0.15.9"
-hooks = [
-    {
-        id = "ruff",
-        name = "lint python",
-        args = ["--fix"],
-    },
-    {
-        id = "ruff-format",
-        name = "format python",
     },
 ]

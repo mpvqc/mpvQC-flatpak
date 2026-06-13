@@ -16,27 +16,32 @@ alias fmt := format
 
 # Initialize repository
 init:
-    uv sync --project tools --group dev
+    uvx prek install
 
 # Format code
 format:
-    uv run --project tools prek --config=.config/prek.toml run --all-files
+    uvx prek --config=.config/prek.toml run --all-files
 
-# Lint Python files (type checker)
-lint:
-    uv run --project tools pyrefly check tools/flatpak-pypi-updater.py
+# Update git hook dependencies
+update-git-hook-dependencies:
+    uvx prek --config=.config/prek.toml auto-update
 
 # Regenerate Python dependency file
 [group('support')]
-@generate-flatpak-dependencies:
-    uv run --project tools tools/flatpak-pypi-updater.py \
-    	--dependency inject::none:any \
-    	--dependency PySide6-Essentials==6.11.1::manylinux:x86_64 \
-    	--dependency shiboken6==6.11.1::manylinux:x86_64 \
-    	--dependency MarkupSafe==3.0.3::cp312:manylinux:x86_64 \
-    	--dependency Jinja2::none:any \
-    	--dependency mpv::none:any \
-    	--output {{ MANIFEST_PYPI_FILE }}
+generate-flatpak-dependencies:
+    #!/usr/bin/env nu
+    let cleanup = (open "{{ MANIFEST_PYPI_FILE }}" | get cleanup?)
+    let reqs = [
+        "inject==5.3.0"
+        "PySide6-Essentials==6.11.1"
+        "shiboken6==6.11.1"
+        "MarkupSafe==3.0.3"
+        "Jinja2==3.1.6"
+        "mpv==1.0.8"
+    ]
+    let generated = (^uvx --with pyyaml req2flatpak --target-platforms 313-x86_64 --requirements ...$reqs --yaml | from yaml)
+    let out = if ($cleanup | is-empty) { $generated } else { $generated | merge { cleanup: ($cleanup | sort --ignore-case) } }
+    $out | to yaml | save --force "{{ MANIFEST_PYPI_FILE }}"
 
 # Lint flatpak appstream file
 [group('flatpak-lint')]
