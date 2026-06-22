@@ -112,4 +112,4 @@ run-flatpak:
 # (4) Uninstall flatpak
 [group('flatpak')]
 uninstall-flatpak:
-    flatpak uninstall --user {{ APP_ID }}
+    flatpak uninstall --user {{ APP_ID }} -y
