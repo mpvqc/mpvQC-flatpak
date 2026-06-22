@@ -306,11 +306,8 @@ modules:
     buildsystem: simple
     build-options:
       env:
-        MPVQC_COMPILE_QML: 'true'
         UV_PYTHON: /usr/bin/python3
         UV_NO_PROJECT: '1'
-        UV_NO_SYNC: '1'
-        UV_OFFLINE: '1'
     build-commands:
       - rm .env
       # Build using the same recipe as the CI `build_linux` job.
