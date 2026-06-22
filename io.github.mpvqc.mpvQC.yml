@@ -326,8 +326,11 @@ modules:
       - install -Dm644 io.github.mpvqc.mpvQC.svg /app/share/icons/hicolor/scalable/apps/io.github.mpvqc.mpvQC.svg
       - install -Dm644 io.github.mpvqc.mpvQC.desktop /app/share/applications/io.github.mpvqc.mpvQC.desktop
       - install -Dm644 io.github.mpvqc.mpvQC.metainfo.xml -t /app/share/metainfo
-      - install -Dm755 launch.sh /app/bin/launch.sh
-      - ln -s /app/bin/launch.sh /app/bin/mpvQC
+
+      # Install the launcher as the command, it execs the interpreter copy below.
+      - install -Dm755 launch.sh /app/bin/mpvQC
+      # Copy the interpreter under an app name so the audio mixer shows "mpvQC-bin" instead of "python3"
+      - cp /usr/bin/python3 /app/bin/mpvQC-bin
 
       # Install licenses shipped with the mpvQC source tree
       - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
