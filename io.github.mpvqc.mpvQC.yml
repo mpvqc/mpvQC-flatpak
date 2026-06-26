@@ -97,8 +97,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/libass/libass.git
-        tag: 0.17.4
-        commit: bbb3c7f1570a4a021e52683f3fbdf74fe492ae84
+        tag: 0.17.5
+        commit: 4a05d8127f525943ebf45fdc6497c9e665947f0d
         x-checker-data:
           type: git
           tag-pattern: ^(\d\.\d{1,3}\.\d{1,2})$
@@ -198,8 +198,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
-        tag: n8.1.1
-        commit: 239f2c733de417201d7ad3b3b8b0d9b63285b2b1
+        tag: n8.1.2
+        commit: 38b88335f99e76ed89ff3c93f877fdefce736c13
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -334,26 +334,28 @@ modules:
       - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
       - type: archive
-        url: https://github.com/casey/just/releases/download/1.51.0/just-1.51.0-x86_64-unknown-linux-musl.tar.gz
-        sha256: c8f085ca3e885723c341d06243fc291b5abfdc8bbe3b2c076b117de490387b59
+        url: https://github.com/casey/just/releases/download/1.54.0/just-1.54.0-x86_64-unknown-linux-musl.tar.gz
+        sha256: 193e2b04bac8ff3568ff81cf62f8c9db08f8083e16665e28d400dd35bac47ffd
         strip-components: 0
         dest: build-tools
         x-checker-data:
           type: json
           url: https://api.github.com/repos/casey/just/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
+          url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz")
+            | .browser_download_url
           timestamp-query: .published_at
       - type: archive
-        url: https://github.com/astral-sh/uv/releases/download/0.11.17/uv-x86_64-unknown-linux-musl.tar.gz
-        sha256: 4231a429d4e0f7c1937d8916658c08a7706cd7872afebeb87203a18c2e0dc28e
+        url: https://github.com/astral-sh/uv/releases/download/0.11.24/uv-x86_64-unknown-linux-musl.tar.gz
+        sha256: 2f9eaa976cf8ad8574623dde6916fb87ec047524fe65b99dc11e44e33eae4bfb
         strip-components: 1
         dest: build-tools
         x-checker-data:
           type: json
           url: https://api.github.com/repos/astral-sh/uv/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name == "uv-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
+          url-query: .assets[] | select(.name == "uv-x86_64-unknown-linux-musl.tar.gz")
+            | .browser_download_url
           timestamp-query: .published_at
 
       - type: file
