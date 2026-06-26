@@ -37,6 +37,57 @@
     </screenshots>
 
     <releases>
+        <release date="2026-06-27" version="0.9.0-beta5">
+            <description>
+                <p>This is the last planned beta before the stable 0.9.0 release. Please report any bugs or
+                    issues to help improve future releases 🚀</p>
+                <p>New Save Format</p>
+                <ul>
+                    <li>mpvQC now saves quality check documents in a new format that keeps the exact timing of
+                        every comment, down to the millisecond, using a documented and stable layout so other
+                        tools can read mpvQC files reliably
+                    </li>
+                    <li>Saving uses the new format by default, and older documents still open as before</li>
+                    <li>New comments record the exact moment in the video instead of rounding to the nearest
+                        second
+                    </li>
+                    <li>Automatic backups use the new format too</li>
+                    <li>Note: Saving an older document now produces the new format. If you still need the old
+                        plain-text format, use File → Export QC Document → mpvQC Classic
+                    </li>
+                </ul>
+                <p>Updated Material 3 Appearance</p>
+                <ul>
+                    <li>The Material appearance has been updated with a fuller and more consistent color
+                        palette
+                    </li>
+                    <li>Clearer accent colors, including red for actions like delete and close</li>
+                    <li>The About and Shortcuts dialogs have been redesigned</li>
+                    <li>Small visual polish throughout</li>
+                </ul>
+                <p>Improvements and Fixes</p>
+                <ul>
+                    <li>Fixed crashes, including when quitting right after loading a video</li>
+                    <li>Imports no longer list the same file twice, and recognize files no matter how their
+                        extension is capitalized
+                    </li>
+                    <li>A log file is now kept in the app data folder (Help → Open App Data Folder) to make
+                        reporting problems easier
+                    </li>
+                </ul>
+                <p>Linux Updates</p>
+                <ul>
+                    <li>On Linux desktops, mpvQC now draws a proper drop shadow and rounded corners around its
+                        window. On tiling window managers this is skipped, since they usually handle window
+                        framing themselves.
+                    </li>
+                </ul>
+                <p>Special Thanks</p>
+                <ul>
+                    <li>@RcUchiha for the updated Spanish translation</li>
+                </ul>
+            </description>
+        </release>
         <release date="2026-06-01" version="0.9.0-beta4">
             <description>
                 <p>Please report any bugs or issues to help improve future releases 🚀</p>
@@ -80,6 +131,10 @@
                     <li>Note: If you've customized your mpv.conf, enable this via Options → Edit mpv.conf by restoring
                         the defaults (or by adding hwdec=auto yourself)
                     </li>
+                </ul>
+                <p>Special Thanks</p>
+                <ul>
+                    <li>@RcUchiha for the updated Spanish translation</li>
                 </ul>
             </description>
         </release>
