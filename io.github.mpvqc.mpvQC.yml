@@ -319,6 +319,11 @@ modules:
       - install -D build/release/main.py /app/share/$FLATPAK_ID/main.py
       - install -D build/release/rc_project.py /app/share/$FLATPAK_ID/rc_project.py
 
+      # Bake bytecode caches into the read-only image. unchecked-hash (PEP 552) is
+      # required: ostree normalizes mtimes, which invalidates timestamp-based .pyc.
+      # PySide6/scripts ships Jinja templates with a .py suffix, so skip it.
+      - /usr/bin/python3 -m compileall -q --invalidation-mode unchecked-hash -x 'PySide6/scripts' /app/share/$FLATPAK_ID /app/lib/python3.*/site-packages
+
       # Install Flatpak integration files
       - install -Dm644 io.github.mpvqc.mpvQC.svg /app/share/icons/hicolor/scalable/apps/io.github.mpvqc.mpvQC.svg
       - install -Dm644 io.github.mpvqc.mpvQC.desktop /app/share/applications/io.github.mpvqc.mpvQC.desktop
@@ -342,8 +347,7 @@ modules:
           type: json
           url: https://api.github.com/repos/casey/just/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz")
-            | .browser_download_url
+          url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
           timestamp-query: .published_at
       - type: archive
         url: https://github.com/astral-sh/uv/releases/download/0.11.24/uv-x86_64-unknown-linux-musl.tar.gz
@@ -354,8 +358,7 @@ modules:
           type: json
           url: https://api.github.com/repos/astral-sh/uv/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name == "uv-x86_64-unknown-linux-musl.tar.gz")
-            | .browser_download_url
+          url-query: .assets[] | select(.name == "uv-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
           timestamp-query: .published_at
 
       - type: file
