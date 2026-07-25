@@ -28,6 +28,8 @@ jobs:
 
       - name: "Build"
         uses: andyholmes/flatter@main
+        env:
+          MPVQC_BUILD_CHANNEL: ${{ github.repository == 'mpvqc/mpvQC-flatpak' && github.ref == 'refs/heads/main' && 'mpvqc-flatpak' || '' }}
         with:
           files: io.github.mpvqc.mpvQC.yml
           gpg-sign: ${{ steps.gpg.outputs.fingerprint }}

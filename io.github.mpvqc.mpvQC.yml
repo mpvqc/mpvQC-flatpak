@@ -308,6 +308,11 @@ modules:
       env:
         UV_PYTHON: /usr/bin/python3
         UV_NO_PROJECT: '1'
+      # Forwards the build channel from the flatpak-builder host into the build
+      # sandbox. Only the variable's name is committed, never its value, so
+      # builds from a copy of this manifest stay unstamped (unofficial).
+      secret-env:
+        - MPVQC_BUILD_CHANNEL
     build-commands:
       - rm .env
       # Build using the same recipe as the CI `build_linux` job.
