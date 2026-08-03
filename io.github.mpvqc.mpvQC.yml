@@ -18,6 +18,9 @@ finish-args:
   - --filesystem=home
   - --filesystem=xdg-run/pipewire-0:ro
 
+  # Make sure Qt picks the desktop portal backend
+  - --env=QT_QPA_PLATFORMTHEME=xdgdesktopportal
+
 build-options:
   cflags: -O2
   cxxflags: -O2
