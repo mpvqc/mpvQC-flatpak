@@ -342,9 +342,10 @@ modules:
       # Copy the interpreter under an app name so the audio mixer shows "mpvQC-bin" instead of "python3"
       - cp /usr/bin/python3 /app/bin/mpvQC-bin
 
-      # Install licenses shipped with the mpvQC source tree
+      # Install the notice and licenses shipped with the mpvQC source tree
       - mkdir -p ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
       - cp LICENSES/*.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
+      - cp NOTICE.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
       - type: archive
         url: https://github.com/casey/just/releases/download/1.57.0/just-1.57.0-x86_64-unknown-linux-musl.tar.gz
