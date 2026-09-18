@@ -1,30 +1,39 @@
 name: python3-package-installation
 buildsystem: simple
 build-commands:
-  - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation inject PySide6-Essentials shiboken6 MarkupSafe Jinja2 mpv
+  - >-
+    pip3 install --verbose --exists-action=i --no-index
+    --find-links="file://${PWD}" --prefix=${FLATPAK_DEST} --no-build-isolation inject PySide6-Essentials
+    shiboken6 MarkupSafe Jinja2 mpv
 sources:
   - type: file
-    url: https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
+    url: >-
+      https://files.pythonhosted.org/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl
     sha256: 85ece4451f492d0c13c5dd7c13a64681a86afae63a5f347908daf103ce6d2f67
   - type: file
-    url: https://files.pythonhosted.org/packages/a9/21/9b05698b46f218fc0e118e1f8168395c65c8a2c750ae2bab54fc4bd4e0e8/markupsafe-3.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
+    url: >-
+      https://files.pythonhosted.org/packages/a9/21/9b05698b46f218fc0e118e1f8168395c65c8a2c750ae2bab54fc4bd4e0e8/markupsafe-3.0.3-cp313-cp313-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl
     sha256: ccfcd093f13f0f0b7fdd0f198b90053bf7b2f02a3927a30e63f3ccc9df56b676
     only-arches:
       - x86_64
   - type: file
-    url: https://files.pythonhosted.org/packages/5c/49/0e1237c4400bec7e335d2c4eeb49bc40d9fd88a9ac44ca9083ce1abdc308/pyside6_essentials-6.11.1-cp310-abi3-manylinux_2_34_x86_64.whl
-    sha256: e3ef7027b41e4e55fadb56e3b3257dc8ee92154b639fe67fc4c8e05e9d976c60
+    url: >-
+      https://files.pythonhosted.org/packages/0e/1a/84a84bbc75835ee88abdcb66eb875b8e1a21834af9b833bc1893f2c1bfaf/pyside6_essentials-6.11.2-cp310-abi3-manylinux_2_34_x86_64.whl
+    sha256: aaf9f25f0f324874085fa5b26a610318db8a8e243cf85bb3e5400595191c7778
     only-arches:
       - x86_64
   - type: file
-    url: https://files.pythonhosted.org/packages/98/6e/b00ef8fe9a43aa3a6f5687b710832f0d876c0812bd0ce1c3af3e71bf7dd1/inject-5.3.0-py2.py3-none-any.whl
-    sha256: 4758eb6c464d3e2badbbf65ac991c64752b05429d6af4c3c0e5b2765efaf7e73
+    url: >-
+      https://files.pythonhosted.org/packages/2b/f2/b8f8241ff1adb0a3738904afd56330c439701f19919148e76ca86d3d42ec/inject-5.5.0-py3-none-any.whl
+    sha256: ceaa6a2b6808bdd49736b4fcceed8b49f2a0967c1486ce4323b6ef41819241e9
   - type: file
-    url: https://files.pythonhosted.org/packages/f4/cf/0d5f52753366ecf2c3d763e331dcda54b0f20a1a8e52b175feb9c625399d/mpv-1.0.8-py3-none-any.whl
+    url: >-
+      https://files.pythonhosted.org/packages/f4/cf/0d5f52753366ecf2c3d763e331dcda54b0f20a1a8e52b175feb9c625399d/mpv-1.0.8-py3-none-any.whl
     sha256: dcf77f612e3f5ce49bd89393f37d286de7ac290db6b0800f1fdcfe0aeb5ba9b8
   - type: file
-    url: https://files.pythonhosted.org/packages/c7/9b/e0355d8897b5c150770f1d95718aad17d432fcc9c035c04f3f58427d4693/shiboken6-6.11.1-cp310-abi3-manylinux_2_34_x86_64.whl
-    sha256: 9a8bccfafc8805254cabcfa1edfaf55cd52889f4998c91ad0d9a4433fb1bcdbe
+    url: >-
+      https://files.pythonhosted.org/packages/a5/9a/f41bea4316d0c1bec4800842dcb4bd8fd3e29d6a79c496bc32e1aec42583/shiboken6-6.11.2-cp310-abi3-manylinux_2_34_x86_64.whl
+    sha256: 7a7a0a72a9ed26c9bf77d42246b1c736486befb8f31aa2fb29957ea4cdd1c1c2
     only-arches:
       - x86_64
 cleanup:
@@ -51,17 +60,22 @@ cleanup:
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QmlLocalStorage.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QmlNetwork.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QmlXmlListModel.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2FluentWinUI3StyleImpl.so.6
+  - >-
+    /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2FluentWinUI3StyleImpl.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2Fusion.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2FusionStyleImpl.so.6
+  - >-
+    /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2FusionStyleImpl.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2Imagine.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2ImagineStyleImpl.so.6
+  - >-
+    /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2ImagineStyleImpl.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2Universal.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2UniversalStyleImpl.so.6
+  - >-
+    /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickControls2UniversalStyleImpl.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickTest.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickTimeline.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickTimelineBlendTrees.so.6
-  - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickVectorImageGenerator.so.6
+  - >-
+    /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickVectorImageGenerator.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6QuickWidgets.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6Sql.so.6
   - /lib/python3.13/site-packages/PySide6/Qt/lib/libQt6SvgWidgets.so.6
@@ -77,7 +91,8 @@ cleanup:
   - /lib/python3.13/site-packages/PySide6/Qt/plugins/qmltooling
   - /lib/python3.13/site-packages/PySide6/Qt/plugins/sqldrivers
   - /lib/python3.13/site-packages/PySide6/Qt/plugins/tls
-  - /lib/python3.13/site-packages/PySide6/Qt/plugins/wayland-graphics-integration-server
+  - >-
+    /lib/python3.13/site-packages/PySide6/Qt/plugins/wayland-graphics-integration-server
   - /lib/python3.13/site-packages/PySide6/Qt/qml/Qt
   - /lib/python3.13/site-packages/PySide6/Qt/qml/QtNetwork
   - /lib/python3.13/site-packages/PySide6/Qt/qml/QtQuick/Controls/FluentWinUI3

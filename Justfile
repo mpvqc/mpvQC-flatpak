@@ -32,9 +32,9 @@ generate-flatpak-dependencies:
     #!/usr/bin/env nu
     let cleanup = (open "{{ MANIFEST_PYPI_FILE }}" | get cleanup?)
     let reqs = [
-        "inject==5.3.0"
-        "PySide6-Essentials==6.11.1"
-        "shiboken6==6.11.1"
+        "inject==5.5.0"
+        "PySide6-Essentials==6.11.2"
+        "shiboken6==6.11.2"
         "MarkupSafe==3.0.3"
         "Jinja2==3.1.6"
         "mpv==1.0.8"
