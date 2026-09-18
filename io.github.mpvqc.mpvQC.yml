@@ -43,9 +43,11 @@ modules:
   # Most are just copied. ffmpeg and mpv are tweaked for mpvQC specifically
   - name: luajit
     no-autogen: true
-    build-options:
-      cflags: -O2 -fno-lto
-      cxxflags: -O2 -fno-lto
+    make-args:
+      - BUILDMODE=dynamic
+      - PREFIX=${FLATPAK_DEST}
+    make-install-args:
+      - PREFIX=${FLATPAK_DEST}
     cleanup:
       - /bin
       - /include
@@ -53,19 +55,13 @@ modules:
       - /share/man
     sources:
       - type: git
-        url: https://github.com/LuaJIT/LuaJIT.git
-        disable-shallow-clone: true
-        # LuaJIT v2.1 is a rolling branch with no tags; update the commit manually
-        commit: 659a61693aa3b87661864ad0f12eee14c865cd7f
-        # x-checker-data:
-        #   type: json
-        #   url: https://api.github.com/repos/LuaJIT/LuaJIT/branches/v2.1
-        #   commit-query: .commit.sha
-        #   version-query: .commit.sha
-        #   timestamp-query: .commit.commit.committer.date
-      - type: shell
-        commands:
-          - sed -i 's|/usr/local|/app|' ./Makefile
+        url: https://github.com/openresty/luajit2.git
+        tag: v2.1-20260914
+        commit: ae3d1eecfdbe70b54040779f7b4655e132b9d875
+        x-checker-data:
+          type: git
+          tag-pattern: ^v([\d.-]+)$
+          stable-only: false
 
   - name: uchardet
     buildsystem: cmake-ninja
@@ -201,8 +197,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/FFmpeg/FFmpeg.git
-        tag: n8.1.2
-        commit: 38b88335f99e76ed89ff3c93f877fdefce736c13
+        tag: n9.0.2
+        commit: 946fcce07b6dcd0331c8cc609192aeff5e1924f8
         x-checker-data:
           type: git
           tag-pattern: ^n([\d.]{3,7})$
@@ -218,7 +214,9 @@ modules:
         sha256: 9c02a68b29eb446b2d0b1be3d831420fdc2bd703aacccc468faef9f94e3bf85f
         x-checker-data:
           type: json
-          url: https://api.github.com/repos/vapoursynth/vapoursynth/releases/latest
+          # Match io.mpv.Mpv: R74+ no longer installs the system library mpv needs.
+          # TODO update once upstream supports newer VapourSynth releases.
+          url: https://api.github.com/repos/vapoursynth/vapoursynth/releases/264862300
           version-query: .name
           timestamp-query: .published_at
           url-query: .tarball_url
@@ -348,8 +346,8 @@ modules:
       - cp NOTICE.txt ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/mpvQC
     sources:
       - type: archive
-        url: https://github.com/casey/just/releases/download/1.57.0/just-1.57.0-x86_64-unknown-linux-musl.tar.gz
-        sha256: 45b548094283cb9739af8f13273b8cddeee869f5b4ef2bb631b1f311cb566155
+        url: https://github.com/casey/just/releases/download/1.58.0/just-1.58.0-x86_64-unknown-linux-musl.tar.gz
+        sha256: 4a5cc2f53e6f0f8c59092a6cc38291eb729d46a7dd95d3ae582008881b84931d
         strip-components: 0
         dest: build-tools
         x-checker-data:
@@ -359,8 +357,8 @@ modules:
           url-query: .assets[] | select(.name == "just-" + $version + "-x86_64-unknown-linux-musl.tar.gz") | .browser_download_url
           timestamp-query: .published_at
       - type: archive
-        url: https://github.com/astral-sh/uv/releases/download/0.12.0/uv-x86_64-unknown-linux-musl.tar.gz
-        sha256: 3340a9d8cffc4d801bc1a7459ebfaf5790c79400720d9b6963d806f058526684
+        url: https://github.com/astral-sh/uv/releases/download/0.12.17/uv-x86_64-unknown-linux-musl.tar.gz
+        sha256: 6401c4665d8fa2a9893e087c91f585430738e3170f5398a1141483efb4a93310
         strip-components: 1
         dest: build-tools
         x-checker-data:
