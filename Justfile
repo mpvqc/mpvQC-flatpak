@@ -39,7 +39,7 @@ generate-flatpak-dependencies:
         "Jinja2==3.1.6"
         "mpv==1.0.8"
     ]
-    let generated = (^uvx --with pyyaml req2flatpak --target-platforms 313-x86_64 --requirements ...$reqs --yaml | from yaml)
+    let generated = (^uvx --with pyyaml req2flatpak --target-platforms 314-x86_64 --requirements ...$reqs --yaml | from yaml)
     let out = if ($cleanup | is-empty) { $generated } else { $generated | merge { cleanup: ($cleanup | sort --ignore-case) } }
     $out | to yaml | save --force "{{ MANIFEST_PYPI_FILE }}"
 
@@ -113,3 +113,7 @@ run-flatpak:
 [group('flatpak')]
 uninstall-flatpak:
     flatpak uninstall --user {{ APP_ID }} -y
+
+
+## sudo chmod 0666 /var/run/docker.sock
+## sudo systemctl start docker
