@@ -291,6 +291,7 @@ modules:
       - --disable-static
     post-install:
       - install -Dm644 ../krb5.conf -t ${FLATPAK_DEST}/etc/
+      - install -Dm644 ../NOTICE ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/krb5/NOTICE
     sources:
       - type: archive
         url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
