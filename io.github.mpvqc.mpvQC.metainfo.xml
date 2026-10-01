@@ -37,6 +37,43 @@
     </screenshots>
 
     <releases>
+        <release date="2026-10-01" version="1.0.0">
+            <description>
+                <p>Changes since 0.9.0-beta5</p>
+                <p>General</p>
+                <ul>
+                    <li>Added System appearance and separate Light and Dark accent colors.</li>
+                    <li>Fixed subtitles loading with the wrong video.</li>
+                    <li>Fixed unwanted formatting in comments and comment-type names that look like markup. They now
+                        display as plain text.
+                    </li>
+                    <li>Fixed the comment-type column width to fit both configured and loaded types.</li>
+                    <li>Fixed timestamps losing their hours when no long video was loaded.</li>
+                    <li>Fixed the timestamp editor opening behind the search box.</li>
+                    <li>Fixed search responding to input while a modal dialog was open.</li>
+                    <li>Fixed several crashes on exit.</li>
+                    <li>Updated the Mexican Spanish translation.</li>
+                </ul>
+                <p>Windows</p>
+                <ul>
+                    <li>Changed transitions to fullscreen so they happen instantly.</li>
+                    <li>Fixed the window or dialogs flashing white before any content appeared. This was especially
+                        noticeable in dark mode.
+                    </li>
+                    <li>Fixed restoring maximized windows after minimizing them from the title bar.</li>
+                    <li>Fixed cases where mpvQC didn't recognize an auto-hidden taskbar.</li>
+                    <li>Fixed comment-type choices sometimes appearing in reverse order.</li>
+                </ul>
+                <p>Linux</p>
+                <ul>
+                    <li>Sped up resource loading at startup.</li>
+                    <li>Fixed window alignment on Wayland when scaling through Qt environment variables, including after
+                        screen changes.
+                    </li>
+                    <li>Fixed comments extending outside the visible content area in small Wayland windows.</li>
+                </ul>
+            </description>
+        </release>
         <release date="2026-06-27" version="0.9.0-beta5">
             <description>
                 <p>This is the last planned beta before the stable 0.9.0 release. Please report any bugs or
