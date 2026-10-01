@@ -378,11 +378,8 @@ modules:
       - type: file
         path: io.github.mpvqc.mpvQC.svg
 
-      # - type: dir
-      #   path: /home/elias/PycharmProjects/mpvQC
-
       - type: git
         url: https://github.com/mpvqc/mpvQC.git
-        tag: 0.9.0-beta5
-        commit: e4dbf52208f8fda1c5b476b9447c399539525a3a
+        tag: 1.0.0
+        commit: 0fd61bdf8472b3718832aa94cbb05f1086466594
         disable-shallow-clone: true # required for stamping version info
