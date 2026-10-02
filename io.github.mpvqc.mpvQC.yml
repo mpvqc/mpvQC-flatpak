@@ -2,7 +2,7 @@
 
 id: io.github.mpvqc.mpvQC
 runtime: org.freedesktop.Platform
-runtime-version: '25.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: mpvQC
 
@@ -301,6 +301,11 @@ modules:
           url: https://kerberos.org/dist/
           version-pattern: Kerberos V5 Release ([\d\.-]*) - current release
           url-template: https://kerberos.org/dist/krb5/$version0.$version1/krb5-$version.tar.gz
+      # glibc >= 2.43 (freedesktop 26.08) makes strchr() const-preserving per C23,
+      # which trips krb5's own -Werror=discarded-qualifiers. Upstream fix is on
+      # master only. Drop once a release after 1.22.2 ships.
+      - type: patch
+        path: patches/krb5-fix-strchr-conformance-to-c23.patch
       - type: file
         path: krb5.conf
 
