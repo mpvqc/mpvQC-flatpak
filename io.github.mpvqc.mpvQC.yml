@@ -291,6 +291,7 @@ modules:
       - --disable-static
     post-install:
       - install -Dm644 ../krb5.conf -t ${FLATPAK_DEST}/etc/
+      - install -Dm644 ../NOTICE ${FLATPAK_DEST}/share/licenses/$FLATPAK_ID/krb5/NOTICE
     sources:
       - type: archive
         url: https://kerberos.org/dist/krb5/1.22/krb5-1.22.2.tar.gz
@@ -382,11 +383,8 @@ modules:
       - type: file
         path: io.github.mpvqc.mpvQC.svg
 
-      # - type: dir
-      #   path: /home/elias/PycharmProjects/mpvQC
-
       - type: git
         url: https://github.com/mpvqc/mpvQC.git
-        # tag: 0.9.0-beta5
-        commit: 8f6447009ceecacd0268021b51d74a4c2d620703
+        tag: 1.0.0
+        commit: 0fd61bdf8472b3718832aa94cbb05f1086466594
         disable-shallow-clone: true # required for stamping version info
