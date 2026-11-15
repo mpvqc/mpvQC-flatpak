@@ -274,7 +274,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
-          is-main-source: true
 
   # https://github.com/flathub/io.qt.qtwebengine.BaseApp/tree/branch/6.7/krb5
   - name: krb5
