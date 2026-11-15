@@ -16,7 +16,7 @@ alias fmt := format
 
 # Initialize repository
 init:
-    uvx prek install
+    uvx prek install --config=.config/prek.toml
 
 # Format code
 format:
@@ -24,7 +24,7 @@ format:
 
 # Update git hook dependencies
 update-git-hook-dependencies:
-    uvx prek --config=.config/prek.toml auto-update
+    uvx prek --config=.config/prek.toml update
 
 # Regenerate Python dependency file
 [group('support')]
