@@ -9,15 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/andyholmes/flatter/freedesktop:25.08
+      image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-26.08
       options: --privileged
 
     steps:
       - uses: actions/checkout@v7
-
-      - name: Install unzip
-        run: |
-          dnf install -y unzip
 
       - name: Setup GPG
         id: gpg
@@ -26,17 +22,29 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-      - name: "Build"
-        uses: andyholmes/flatter@main
+      - name: Build
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         env:
           MPVQC_BUILD_CHANNEL: ${{ github.repository == 'mpvqc/mpvQC-flatpak' && github.ref == 'refs/heads/main' && 'mpvqc-flatpak' || '' }}
         with:
-          files: io.github.mpvqc.mpvQC.yml
+          manifest-path: io.github.mpvqc.mpvQC.yml
+          bundle: io.github.mpvqc.mpvQC.flatpak
+          artifact-name: io.github.mpvqc.mpvQC-x86_64
           gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
-          upload-bundles: true
-          upload-pages-artifact: ${{ github.ref == 'refs/heads/main' }}
-          upload-pages-includes: |
-            mpvQC.flatpakref
+
+      # Existing installs follow the repository at the Pages root, so the build
+      # output is published as is, next to the files that describe the remote.
+      - name: Prepare Pages content
+        run: |
+          cp mpvQC.flatpakref index.flatpakrepo repo/
+          chmod -R +rX repo
+
+      # Uploaded on every branch so a build can be inspected before it ships.
+      # Only the deploy job below publishes it.
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: repo
 
   deploy:
     name: Deploy
