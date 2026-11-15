@@ -66,16 +66,16 @@ generate-flatpak-dependencies:
 # Check for dependency updates (read-only)
 [group('flatpak-update')]
 @run-x-checker-check:
-    docker run --rm \
-        -v $PWD:/run/app \
+    podman run --rm \
+        -v "$PWD:/run/app:z" \
         ghcr.io/flathub/flatpak-external-data-checker:latest \
         /run/app/{{ MANIFEST_FILE }}
 
 # Sync dependency updates (update manifest file)
 [group('flatpak-update')]
 @run-x-checker-update:
-    docker run --rm \
-        -v $PWD:/run/app \
+    podman run --rm \
+        -v "$PWD:/run/app:z" \
         ghcr.io/flathub/flatpak-external-data-checker:latest \
         --update --edit-only \
         /run/app/{{ MANIFEST_FILE }}
@@ -90,13 +90,13 @@ clean-flatpak-resources:
 # (1) Build flatpak
 [group('flatpak')]
 build-flatpak:
-    flatpak-builder \
+    flatpak run org.flatpak.Builder \
         --force-clean {{ BUILD_DIR }} {{ MANIFEST_FILE }}
 
 # (2) Install flatpak
 [group('flatpak')]
 install-flatpak:
-    flatpak-builder \
+    flatpak run org.flatpak.Builder \
         --force-clean \
         --user \
         --install-deps-from=flathub \
