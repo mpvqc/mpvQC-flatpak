@@ -8,7 +8,8 @@ This repository contains necessary artifacts and scripts to build mpvQC flatpaks
 
 Install mpvQC from the published Flatpak ref:
 
-- Download the <a href="https://mpvqc.github.io/mpvQC-flatpak/mpvQC.flatpakref" download="mpvQC.flatpakref">Flatpak Ref File</a> and double click it
+- Download the <a href="https://mpvqc.github.io/mpvQC-flatpak/mpvQC.flatpakref" download="mpvQC.flatpakref">Flatpak Ref
+  File</a> and double click it
 
 or via **command line**:
 
