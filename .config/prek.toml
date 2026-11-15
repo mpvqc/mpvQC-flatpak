@@ -53,6 +53,17 @@ hooks = [
 ]
 
 [[repos]]
+repo = "https://github.com/zizmorcore/zizmor-pre-commit"
+rev = "v1.32.0"
+hooks = [
+    {
+        id = "zizmor",
+        name = "audit workflows",
+        args = ["--no-progress", "--offline"],
+    },
+]
+
+[[repos]]
 repo = "https://github.com/hukkin/mdformat"
 rev = "1.0.0"
 hooks = [

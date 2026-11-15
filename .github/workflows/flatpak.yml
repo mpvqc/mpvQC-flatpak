@@ -3,6 +3,9 @@ name: Build Flatpak
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   flatpak:
     name: Flatpak
@@ -13,17 +16,19 @@ jobs:
       options: --privileged
 
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: Setup GPG
         id: gpg
-        uses: crazy-max/ghaction-import-gpg@v7
+        uses: crazy-max/ghaction-import-gpg@2dc316deee8e90f13e1a351ab510b4d5bc0c82cd # v7.0.0
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Build
-        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        uses: flatpak/flatpak-github-actions/flatpak-builder@79327416609af08178ad73b352877e51450790b3 # v6.8
         env:
           MPVQC_BUILD_CHANNEL: ${{ github.repository == 'mpvqc/mpvQC-flatpak' && github.ref == 'refs/heads/main' && 'mpvqc-flatpak' || '' }}
         with:
@@ -42,7 +47,7 @@ jobs:
       # Uploaded on every branch so a build can be inspected before it ships.
       # Only the deploy job below publishes it.
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: repo
 
@@ -64,4 +69,4 @@ jobs:
     steps:
       - name: GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
