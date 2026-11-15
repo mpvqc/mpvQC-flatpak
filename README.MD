@@ -21,7 +21,7 @@ flatpak install --user https://mpvqc.github.io/mpvQC-flatpak/mpvQC.flatpakref
 You need
 [just](https://github.com/casey/just),
 [uv](https://docs.astral.sh/uv/),
-[nu](https://www.nushell.sh/) and the Flatpak toolchain (`flatpak` + `flatpak-builder`).
+[nu](https://www.nushell.sh/) and `flatpak` with the `org.flatpak.Builder` app from Flathub.
 The dependency-update checks additionally use `podman`.
 
 Everything is driven through the [Justfile](Justfile). Run `just` to list every recipe. The ones you reach for most:

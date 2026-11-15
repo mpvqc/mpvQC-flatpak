@@ -90,13 +90,13 @@ clean-flatpak-resources:
 # (1) Build flatpak
 [group('flatpak')]
 build-flatpak:
-    flatpak-builder \
+    flatpak run org.flatpak.Builder \
         --force-clean {{ BUILD_DIR }} {{ MANIFEST_FILE }}
 
 # (2) Install flatpak
 [group('flatpak')]
 install-flatpak:
-    flatpak-builder \
+    flatpak run org.flatpak.Builder \
         --force-clean \
         --user \
         --install-deps-from=flathub \
