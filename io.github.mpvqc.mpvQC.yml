@@ -40,7 +40,10 @@ modules:
   - io.github.mpvqc.mpvQC.pypi.yml
 
   # Rely on upstream project https://github.com/flathub/io.mpv.Mpv for building dependencies.
-  # Most are just copied. ffmpeg and mpv are tweaked for mpvQC specifically
+  # Most are just copied. mpv is tweaked for mpvQC specifically.
+  # Unlike io.mpv.Mpv, FFmpeg comes from the runtime. The patented decoders
+  # (H.264, HEVC, VC-1, VVC) come from the codecs-extra extension, which
+  # Flatpak installs together with the runtime.
   - name: luajit
     no-autogen: true
     make-args:
@@ -167,41 +170,6 @@ modules:
       - type: file
         url: https://www.unicode.org/Public/16.0.0/ucd/SpecialCasing.txt
         sha256: 8d5de354eef79f2395a54c9c7dcebbaf3d30fc962d0f85611ea97aa973a0c451
-
-  - name: ffmpeg
-    cleanup:
-      - /include
-      - /lib/pkgconfig
-      - /share/ffmpeg/examples
-    config-opts:
-      - --disable-debug
-      - --disable-doc
-      - --disable-libv4l2
-      - --disable-programs
-      - --disable-static
-      - --enable-encoder=png
-      - --enable-gnutls
-      - --enable-gpl
-      - --enable-libass
-      - --enable-libdav1d
-      - --enable-libdrm
-      - --enable-libfreetype
-      - --enable-libopus
-      - --enable-libvorbis
-      - --enable-libvpx
-      - --enable-lto
-      - --enable-shared
-      - --enable-vaapi
-      - --enable-version3
-      - --enable-vulkan
-    sources:
-      - type: git
-        url: https://github.com/FFmpeg/FFmpeg.git
-        tag: n9.0.2
-        commit: 946fcce07b6dcd0331c8cc609192aeff5e1924f8
-        x-checker-data:
-          type: git
-          tag-pattern: ^n([\d.]{3,7})$
 
   - name: vapoursynth
     config-opts:
