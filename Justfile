@@ -113,7 +113,3 @@ run-flatpak:
 [group('flatpak')]
 uninstall-flatpak:
     flatpak uninstall --user {{ APP_ID }} -y
-
-
-## sudo chmod 0666 /var/run/docker.sock
-## sudo systemctl start docker
