@@ -23,20 +23,15 @@ hooks = [
 ]
 
 [[repos]]
-repo = "https://github.com/google/yamlfmt"
-rev = "v0.21.0"
+repo = "https://github.com/biomejs/pre-commit"
+rev = "v2.6.7"
 hooks = [
     {
-        id = "yamlfmt",
-        name = "format yml",
-        args = [
-            "-formatter",
-            "line_ending=lf",
-            "-formatter",
-            "retain_line_breaks_single=true",
-            "-formatter",
-            "scan_folded_as_literal=true",
-        ]
+        id = "biome-check",
+        name = "format json, yml",
+        files = '\.(jsonc?|ya?ml)$',
+        exclude = '^\.config/biome\.jsonc$',
+        args = ["--config-path=.config"],
     },
 ]
 

@@ -2,7 +2,7 @@
 
 id: io.github.mpvqc.mpvQC
 runtime: org.freedesktop.Platform
-runtime-version: '26.08'
+runtime-version: "26.08"
 sdk: org.freedesktop.Sdk
 command: mpvQC
 
@@ -33,8 +33,8 @@ cleanup:
   - /share/doc
   - /share/gtk-doc
   - /share/man
-  - '*.la'
-  - '*.a'
+  - "*.la"
+  - "*.a"
 
 modules:
   - io.github.mpvqc.mpvQC.pypi.yml
@@ -276,7 +276,7 @@ modules:
     build-options:
       env:
         UV_PYTHON: /usr/bin/python3
-        UV_NO_PROJECT: '1'
+        UV_NO_PROJECT: "1"
       # Forwards the build channel from the flatpak-builder host into the build
       # sandbox. Only the variable's name is committed, never its value, so
       # builds from a copy of this manifest stay unstamped (unofficial).
