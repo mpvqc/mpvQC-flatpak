@@ -18,8 +18,8 @@ sources:
       - x86_64
   - type: file
     url: >-
-      https://files.pythonhosted.org/packages/0e/1a/84a84bbc75835ee88abdcb66eb875b8e1a21834af9b833bc1893f2c1bfaf/pyside6_essentials-6.11.2-cp310-abi3-manylinux_2_34_x86_64.whl
-    sha256: aaf9f25f0f324874085fa5b26a610318db8a8e243cf85bb3e5400595191c7778
+      https://files.pythonhosted.org/packages/91/23/9692f9b9a7cf89c0e8b99da228a728064aa827dc115b5dc974156bcf14fc/pyside6_essentials-6.11.3-cp310-abi3-manylinux_2_34_x86_64.whl
+    sha256: c6a5c3b58bf55aef6e09a7de690ff6133335014ab81a7f22f56363ea08e8f6a3
     only-arches:
       - x86_64
   - type: file
@@ -32,8 +32,8 @@ sources:
     sha256: dcf77f612e3f5ce49bd89393f37d286de7ac290db6b0800f1fdcfe0aeb5ba9b8
   - type: file
     url: >-
-      https://files.pythonhosted.org/packages/a5/9a/f41bea4316d0c1bec4800842dcb4bd8fd3e29d6a79c496bc32e1aec42583/shiboken6-6.11.2-cp310-abi3-manylinux_2_34_x86_64.whl
-    sha256: 7a7a0a72a9ed26c9bf77d42246b1c736486befb8f31aa2fb29957ea4cdd1c1c2
+      https://files.pythonhosted.org/packages/7c/4a/696e3a9ed26436b1b41ca22dd21e7bce214ba1a1e1dea5c84b5627444c65/shiboken6-6.11.3-cp310-abi3-manylinux_2_34_x86_64.whl
+    sha256: e601c957011345c741b88f661a12486f478db881d6777bdf37e3dc7a8d3387c6
     only-arches:
       - x86_64
 cleanup:
