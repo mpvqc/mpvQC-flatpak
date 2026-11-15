@@ -22,7 +22,7 @@ You need
 [just](https://github.com/casey/just),
 [uv](https://docs.astral.sh/uv/),
 [nu](https://www.nushell.sh/) and the Flatpak toolchain (`flatpak` + `flatpak-builder`).
-The dependency-update checks additionally use `docker`.
+The dependency-update checks additionally use `podman`.
 
 Everything is driven through the [Justfile](Justfile). Run `just` to list every recipe. The ones you reach for most:
 
