@@ -35,7 +35,7 @@ generate-flatpak-dependencies:
         "inject==5.5.0"
         "PySide6-Essentials==6.11.2"
         "shiboken6==6.11.2"
-        "MarkupSafe==3.0.3"
+        "MarkupSafe==3.0.4"
         "Jinja2==3.1.6"
         "mpv==1.0.8"
     ]
