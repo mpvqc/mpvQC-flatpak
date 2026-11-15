@@ -29,4 +29,4 @@ Everything is driven through the [Justfile](Justfile). Run `just` to list every 
 - `just init`: install the git hooks
 - `just generate-flatpak-dependencies`: regenerate the bundled Python dependencies
 - `just build-flatpak`, `just install-flatpak`, `just run-flatpak`: build, install and run the flatpak locally
-- `just format`: format the repo
+- `just format`: format the repo and lint the workflows
